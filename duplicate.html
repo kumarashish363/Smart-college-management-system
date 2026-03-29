@@ -294,7 +294,7 @@
 
         .gallery-hero p {
             font-size: 16px;
-            color: #f9f3f3;
+            color: #333;
             line-height: 1.6;
         }
 
@@ -357,7 +357,7 @@
             transform: scale(1.08);
         }
 
-        /* courses */
+        /*courses*/
 
         /* Container */
         .course-container {
@@ -588,7 +588,7 @@
             background: #00ffd5;
         }
 
-        /*fee*/
+        /*--fee--*/
         /* MAIN */
         .fees-container {
             width: 90%;
@@ -1321,308 +1321,6 @@
             border-radius: 10px;
         }
 
-        /*chat bot*/
-        /* FLOATING BUTTON */
-        #chatbot-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 55px;
-            height: 55px;
-            background: linear-gradient(135deg, #d5e7f0, #2575fc);
-            color: rgb(19, 155, 233);
-            font-size: 24px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-            z-index: 9999;
-        }
-
-        /* CHATBOX */
-        #chatbox {
-            position: fixed;
-            bottom: 90px;
-            right: 20px;
-            width: 300px;
-            height: 400px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(15px);
-            border-radius: 15px;
-            display: none;
-            flex-direction: column;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-            z-index: 9999;
-        }
-
-        /* HEADER */
-        .chat-header {
-            background: linear-gradient(135deg, #6a11cb, #060a1136);
-            padding: 10px;
-            color: rgba(18, 18, 17, 0.184);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        /* BODY */
-        .chat-body {
-            flex: 1;
-            padding: 10px;
-            overflow-y: auto;
-            font-size: 14px;
-        }
-
-        /* MESSAGES */
-        .bot-msg {
-            background: #eee;
-            padding: 8px;
-            margin: 5px 0;
-            border-radius: 10px;
-        }
-
-        .user-msg {
-            background: #dff3f6;
-            color: rgb(7, 7, 7);
-            padding: 8px;
-            margin: 5px 0;
-            border-radius: 10px;
-            text-align: right;
-        }
-
-        /* FOOTER */
-        .chat-footer {
-            display: flex;
-            padding: 10px;
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .chat-footer input {
-            flex: 1;
-            padding: 5px;
-            border: none;
-            border-radius: 5px;
-            outline: none;
-        }
-
-        .chat-footer button {
-            margin-left: 5px;
-            padding: 5px 10px;
-            border: none;
-            background: #2575fc;
-            color: white;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        /*login*/
-        /* 📦 Login Container */
-        #Student\ Login .login-container {
-            width: 360px;
-            padding: 30px;
-            border-radius: 20px;
-            backdrop-filter: blur(15px);
-            background: rgba(255, 255, 255, 0.08);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            text-align: center;
-        }
-
-        /* 📝 Title */
-        #Student\ Login h2 {
-            color: white;
-            margin-bottom: 20px;
-        }
-
-        /* 🔤 Input Fields */
-        #Student\ Login .input-box {
-            position: relative;
-            margin: 10px 0;
-        }
-
-        #Student\ Login .input-box input {
-            width: 100%;
-            padding: 12px;
-            border: none;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.15);
-            color: white;
-            outline: none;
-            font-size: 14px;
-        }
-
-        #Student\ Login input::placeholder {
-            color: #ddd;
-        }
-
-        /* 🔘 Get OTP button (same color as login) */
-        #Student\ Login .get-otp {
-            position: absolute;
-            right: 5px;
-            top: 5px;
-            padding: 6px 10px;
-            border: none;
-            border-radius: 8px;
-            font-size: 12px;
-            cursor: pointer;
-            color: white;
-            background: linear-gradient(45deg, #00c6ff, #0072ff);
-        }
-
-        /* 🔵 Login Button */
-        #Student\ Login .login-btn {
-            width: 100%;
-            padding: 12px;
-            margin-top: 15px;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            color: white;
-            font-size: 16px;
-            background: linear-gradient(45deg, #00c6ff, #0072ff);
-            transition: 0.3s;
-        }
-
-        #Student\ Login .login-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 15px rgba(0, 114, 255, 0.6);
-        }
-
-        /* 🔗 Links */
-        #Student\ Login .extra-links {
-            margin-top: 15px;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        #Student\ Login .extra-links a {
-            color: #ccc;
-            font-size: 13px;
-            text-decoration: none;
-            transition: 0.3s;
-        }
-
-        #Student\ Login .extra-links a:hover {
-            color: #fff;
-        }
-
-        /* 📱 Responsive */
-        @media(max-width:400px) {
-            #Student\ Login .login-container {
-                width: 90%;
-            }
-        }
-
-        /*apply now*/
-        /* CONTAINER */
-        #Apply\ Now .applynow-container {
-            width: 90%;
-            max-width: 500px;
-            padding: 25px;
-            border-radius: 15px;
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(15px);
-            box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
-            color: #fff;
-        }
-
-        /* TITLE */
-        #Apply\ Now h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        /* INPUT BOX */
-        #Apply\ Now .input-box {
-            position: relative;
-            margin-bottom: 15px;
-        }
-
-        #Apply\ Now .input-box input,
-        #Apply\ Now .input-box select {
-            width: 100%;
-            padding: 10px;
-            border: none;
-            outline: none;
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.2);
-            color: #fff;
-        }
-
-        /* LABEL */
-        #Apply\ Now .input-box label {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            font-size: 13px;
-            color: #ddd;
-            pointer-events: none;
-            transition: 0.3s;
-        }
-
-        /* FLOAT EFFECT */
-        #Apply\ Now .input-box input:focus+label,
-        #Apply\ Now .input-box input:valid+label,
-        #Apply\ Now .input-box select:focus+label,
-        #Apply\ Now .input-box select:valid+label {
-            top: -8px;
-            left: 8px;
-            font-size: 11px;
-            background: #000;
-            padding: 2px 5px;
-            border-radius: 5px;
-        }
-
-        /* FILE INPUT */
-        #Apply\ Now .file-box {
-            margin-bottom: 15px;
-        }
-
-        #Apply\ Now .file-box label {
-            font-size: 13px;
-            color: #ccc;
-        }
-
-        #Apply\ Now .file-box input {
-            width: 100%;
-            margin-top: 5px;
-            padding: 8px;
-            border-radius: 6px;
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            color: white;
-        }
-
-        /* BUTTON (BLUE - NOT RED) */
-        #Apply\ Now .btn {
-            width: 100%;
-            padding: 12px;
-            border: none;
-            border-radius: 8px;
-            background: linear-gradient(45deg, #00c6ff, #0072ff);
-            color: white;
-            font-size: 15px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        #Apply\ Now .btn:hover {
-            transform: scale(1.05);
-        }
-
-        /* PROFILE LINK */
-        #Apply\ Now .profile {
-            text-align: center;
-            margin-top: 15px;
-        }
-
-        #Apply\ Now .profile a {
-            color: #00c6ff;
-            text-decoration: none;
-        }
 
         /* FOOTER */
         footer {
@@ -1631,6 +1329,102 @@
                 padding: 60px 20px 25px;
                 background: #0f172a;
                 color: #e5e7eb;
+            }
+
+            /* FLOATING BUTTON */
+            #chatbot-btn {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                width: 55px;
+                height: 55px;
+                background: linear-gradient(135deg, #6a11cb, #2575fc);
+                color: white;
+                font-size: 24px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+                z-index: 9999;
+            }
+
+            /* CHATBOX */
+            #chatbox {
+                position: fixed;
+                bottom: 90px;
+                right: 20px;
+                width: 300px;
+                height: 400px;
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(15px);
+                border-radius: 15px;
+                display: none;
+                flex-direction: column;
+                overflow: hidden;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+                z-index: 9999;
+            }
+
+            /* HEADER */
+            .chat-header {
+                background: linear-gradient(135deg, #6a11cb, #2575fc);
+                padding: 10px;
+                color: white;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            /* BODY */
+            .chat-body {
+                flex: 1;
+                padding: 10px;
+                overflow-y: auto;
+                font-size: 14px;
+            }
+
+            /* MESSAGES */
+            .bot-msg {
+                background: #eee;
+                padding: 8px;
+                margin: 5px 0;
+                border-radius: 10px;
+            }
+
+            .user-msg {
+                background: #6a11cb;
+                color: white;
+                padding: 8px;
+                margin: 5px 0;
+                border-radius: 10px;
+                text-align: right;
+            }
+
+            /* FOOTER */
+            .chat-footer {
+                display: flex;
+                padding: 10px;
+                background: rgba(255, 255, 255, 0.2);
+            }
+
+            .chat-footer input {
+                flex: 1;
+                padding: 5px;
+                border: none;
+                border-radius: 5px;
+                outline: none;
+            }
+
+            .chat-footer button {
+                margin-left: 5px;
+                padding: 5px 10px;
+                border: none;
+                background: #2575fc;
+                color: white;
+                border-radius: 5px;
+                cursor: pointer;
             }
 
             /* WRAPPER */
@@ -1750,130 +1544,6 @@
             <button class="btn" onclick="showPage('Apply Now')">Apply Now</button>
         </div>
     </section>
-
-    <!-- login PAGE -->
-    <div id="Student Login" class="page">
-        <div class="login-container">
-            <h2>Student Login</h2>
-
-            <form>
-
-                <!-- User ID -->
-                <div class="input-box">
-                    <input type="text" placeholder="User ID" required>
-                </div>
-
-                <!-- Password -->
-                <div class="input-box">
-                    <input type="password" placeholder="Password" required>
-                </div>
-
-                <!-- Gmail -->
-                <div class="input-box">
-                    <input type="email" placeholder="Enter Gmail" required>
-                </div>
-
-                <!-- OTP -->
-                <div class="input-box">
-                    <input type="text" placeholder="Enter OTP" required>
-                    <button type="button" class="get-otp">Get OTP</button>
-                </div>
-
-                <!-- Login -->
-                <button class="login-btn">Login</button>
-
-                <!-- Links -->
-                <div class="extra-links">
-                    <a href="#">Forgot Password?</a>
-                    <a href="apply.html">New User?</a>
-                </div>
-
-            </form>
-        </div>
-    </div>
-    </div>
-
-    <!--Apply now-->
-    <div id="Apply Now" class="page">
-        <div class="applynow-container">
-            <h2>Apply Now</h2>
-
-            <form>
-
-                <div class="input-box">
-                    <input type="text" required>
-                    <label>Full Name</label>
-                </div>
-
-                <div class="input-box">
-                    <input type="email" required>
-                    <label>Gmail</label>
-                </div>
-
-                <div class="input-box">
-                    <input type="tel" required>
-                    <label>Phone Number</label>
-                </div>
-
-                <div class="input-box">
-                    <input type="text" required>
-                    <label>JEE Registration Number</label>
-                </div>
-
-                <div class="input-box">
-                    <select required>
-                        <option value=""></option>
-                        <option>B.Tech</option>
-                        <option>M.Tech</option>
-                        <option>BCA</option>
-                        <option>MBA</option>
-                    </select>
-                    <label>Select Course</label>
-                </div>
-
-                <div class="input-box">
-                    <select required>
-                        <option value=""></option>
-                        <option>CSE</option>
-                        <option>Mechanical</option>
-                        <option>Civil</option>
-                        <option>Electrical</option>
-                    </select>
-                    <label>Preferred Branch</label>
-                </div>
-
-                <div class="input-box">
-                    <input type="text" required>
-                    <label>City</label>
-                </div>
-
-                <!-- FILES -->
-                <div class="file-box">
-                    <label>Upload Aadhar Card</label>
-                    <input type="file" required>
-                </div>
-
-                <div class="file-box">
-                    <label>Upload JEE Certificate</label>
-                    <input type="file" required>
-                </div>
-
-                <div class="file-box">
-                    <label>Upload +2 Result</label>
-                    <input type="file" required>
-                </div>
-
-                <button type="submit" class="btn">Submit Application</button>
-
-            </form>
-
-            <div class="profile">
-                <p>Create account to save data</p>
-                <a href="#">Make Your Profile</a>
-            </div>
-
-        </div>
-    </div>
 
     <!-- ABOUT -->
     <section id="about" class="page">
@@ -2109,7 +1779,7 @@
             <div class="top-cards">
                 <div class="top-card">
                     <img src="https://via.placeholder.com/200">
-                    <h4>Dr. Gunamani Jena</h4>
+                    <h4>Dr. S. Mohanty</h4>
                     <div class="hod-info">Principal</div>
                     <div class="hod-info">PhD (IIT Kharagpur)</div>
                     <div class="hod-info">20+ Years Experience</div>
@@ -2125,7 +1795,7 @@
                 </div>
                 <div class="top-card">
                     <img src="https://via.placeholder.com/200">
-                    <h4>Dr. J.Jayalaxmi</h4>
+                    <h4>Mr. R. Patnaik</h4>
                     <div class="hod-info">Chairman</div>
                     <div class="hod-info">MBA (IIM Bangalore)</div>
                     <div class="hod-info">25+ Years Experience</div>
@@ -2149,9 +1819,9 @@
                 <div class="dept-card">
                     <img src="https://via.placeholder.com/300">
                     <h4>ECE</h4>
-                    <div class="hod-name">Prof. Kunja Bihari Nanda</div>
+                    <div class="hod-name">Prof. P. Mishra</div>
                     <div class="hod-info">PhD (IISc Bangalore)</div>
-                    <div class="hod-info">10+ Years Experience</div>
+                    <div class="hod-info">8+ Years Experience</div>
                     <div class="hod-info">VLSI & Embedded Systems</div>
                     <button class="view-btn" onclick="openModal('ece')">View</button>
                 </div>
@@ -2159,7 +1829,7 @@
                 <div class="dept-card">
                     <img src="https://via.placeholder.com/300">
                     <h4>EE</h4>
-                    <div class="hod-name">Dr. Sanat Kumar Patro</div>
+                    <div class="hod-name">Dr. S. Nayak</div>
                     <div class="hod-info">PhD (NIT Rourkela)</div>
                     <div class="hod-info">9+ Years Experience</div>
                     <div class="hod-info">Power Systems</div>
@@ -2169,7 +1839,7 @@
                 <div class="dept-card">
                     <img src="https://via.placeholder.com/300">
                     <h4>ME</h4>
-                    <div class="hod-name">Dr. Rakesh ranjan Polai</div>
+                    <div class="hod-name">Dr. A. Verma</div>
                     <div class="hod-info">PhD (IIT Kanpur)</div>
                     <div class="hod-info">7+ Years Experience</div>
                     <div class="hod-info">Thermodynamics</div>
@@ -2179,20 +1849,11 @@
                 <div class="dept-card">
                     <img src="https://via.placeholder.com/300">
                     <h4>Civil</h4>
-                    <div class="hod-name">Mr. Subhendu Subhasis Sahu</div>
+                    <div class="hod-name">Prof. R. Patel</div>
                     <div class="hod-info">M.Tech (IIT Bombay)</div>
                     <div class="hod-info">6+ Years Experience</div>
                     <div class="hod-info">Structural Engineering</div>
                     <button class="view-btn" onclick="openModal('civil')">View</button>
-                </div>
-                <div class="dept-card">
-                    <img src="https://via.placeholder.com/300">
-                    <h4>MBA</h4>
-                    <div class="hod-name">Mr.Ashish Kumar Dash</div>
-                    <div class="hod-info">M.tech (IIT Bombay)</div>
-                    <div class="hod-info">8+ Years experence</div>
-                    <div class="hod-info"></div>
-                    <button class="view-btn" onclick="openModal('MBA')">view</button>
                 </div>
 
             </div>
@@ -2877,7 +2538,6 @@
             </div>
         </div>
     </section>
-
     <!-- 🔵 FLOATING CHATBOT -->
     <div id="chatbot">
 
@@ -2924,9 +2584,9 @@
                 <!-- CONTACT -->
                 <div class="footer-card">
                     <h4>Contact</h4>
-                    <p>📧 college@example.com</p>
-                    <p>📞 +91 7735111222</p>
-                    <p>📍 Berhmpur</p>
+                    <p>📧 contact@roland.ac.in </p>
+                    <p>📞 +91 7735 111 222</p>
+                    <p>📍 Surya Bihar, Brahmapur, 761008</p>
 
                     <div class="chips">
                         <span>Support</span>
@@ -2996,48 +2656,7 @@
             document.getElementById("modal").style.display = "flex";
 
             let data = {
-                cse: [
-            ["Sunil Kumar Sahu", "PhD", "10+ Years", "Mathematics"],
-            ["Gunamani Jena", "PhD", "10+ Years", "Mathematics"],
-            ["Raghunath Kar", "PhD", "10+ Years", "Mathematics"],
-            ["Rina Rath", "PhD", "10+ Years", "Mathematics"],
-            ["Manik Chand Patnaik", "PhD", "10+ Years", "Mathematics"],
-            ["Simanchal Das", "PhD", "10+ Years", "Mathematics"],
-            ["Parveen Kumar Patra", "PhD", "10+ Years", "Mathematics"],
-            ["Sabita Bisoyi", "PhD", "10+ Years", "Mathematics"],
-            ["Arakhit Bhol", "PhD", "10+ Years", "Mathematics"],
-            ["Gitanjali Sahu", "PhD", "10+ Years", "Mathematics"],
-            ["Prabhu Prasad Patnaik", "PhD", "10+ Years", "Mathematics"],
-            ["Ekta Saraf", "PhD", "10+ Years", "Mathematics"],
-            ["Rabindra Nayaka", "PhD", "10+ Years", "Mathematics"],
-            ["Mandapakala Sangeeta", "PhD", "10+ Years", "Mathematics"],
-            ["Deepak Kumar Jena", "PhD", "10+ Years", "Mathematics"],
-            ["Epari Madhusmita Patra", "PhD", "10+ Years", "Mathematics"],
-            ["Rosaleen Rath", "PhD", "10+ Years", "Mathematics"],
-            ["Sumit Kumar Sabat", "PhD", "10+ Years", "Mathematics"],
-            ["Biswajeet Panda", "PhD", "10+ Years", "Mathematics"],
-            ["Pritam Panda", "PhD", "10+ Years", "Mathematics"],
-            ["Rama Chandra Padhy", "PhD", "10+ Years", "Mathematics"],
-            ["Sanjay Kumar Rauta", "PhD", "10+ Years", "Mathematics"],
-            ["Rasmi Roy Badakumar", "PhD", "10+ Years", "Mathematics"],
-            ["Suresh Sabhapati", "PhD", "10+ Years", "Mathematics"],
-            ["Sradhanajali Sahu", "PhD", "10+ Years", "Mathematics"],
-            ["Kabita Naik", "PhD", "10+ Years", "Mathematics"],
-            ["Manisha Sahu", "PhD", "10+ Years", "Mathematics"],
-            ["Radha Rani Samantara", "PhD", "10+ Years", "Mathematics"],
-            ["Subhashree Mishra", "PhD", "10+ Years", "Mathematics"],
-            ["Santosh Venkata Gouri Malla", "PhD", "10+ Years", "Mathematics"],
-            ["Deeparani Panda", "PhD", "10+ Years", "Mathematics"],
-            ["Arati Kumari Sabat", "PhD", "10+ Years", "Mathematics"],
-            ["Kondeti Maheswar Rao", "PhD", "10+ Years", "Mathematics"],
-            ["Samita Kumari Panda", "PhD", "10+ Years", "Mathematics"],
-            ["Bhagaban Muduli", "PhD", "10+ Years", "Mathematics"],
-            ["Laxmi Maharana", "PhD", "10+ Years", "Mathematics"],
-            ["Saroj Kumar Gomango", "PhD", "10+ Years", "Mathematics"],
-            ["B Chandrababu Naidu", "PhD", "10+ Years", "Mathematics"],
-            ["Dinesh Dash", "PhD", "10+ Years", "Mathematics"],
-            ["Santoshi Rani Nahak", "PhD", "10+ Years", "Mathematics"],
-            ["Manoranjana Panda", "PhD", "10+ Years", "Mathematics"]],
+                cse: [["Dr. R. Kumar", "PhD", "10 yrs", "DSA"]],
                 ece: [["P. Mishra", "PhD", "8 yrs", "VLSI"]],
                 ee: [["S. Nayak", "PhD", "9 yrs", "Power"]]
             };
@@ -3211,7 +2830,7 @@
         <p><span class="highlight">${chance}% Placement Probability</span></p>
     `;
         }
-        /*chat bot*/
+        /* CHATBOT */
         function toggleChat() {
             let chatbox = document.getElementById("chatbox");
             chatbox.style.display = (chatbox.style.display === "flex") ? "none" : "flex";
@@ -3242,6 +2861,7 @@
 
             input.value = "";
         }
+
     </script>
 
 </body>
