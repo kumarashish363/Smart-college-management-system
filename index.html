@@ -1623,8 +1623,66 @@
             color: #00c6ff;
             text-decoration: none;
         }
+          /*ATTENDENCE*/
 
-        /* FOOTER */
+         body{
+      font-family: Arial;
+      text-align:center;
+      margin-top:100px;
+    }
+
+    .att-btn{
+      background:#007bff;
+      color:rgb#0056b3;
+      padding:15px 30px;
+      border:none;
+      border-radius:8px;
+      font-size:18px;
+      cursor:pointer;
+    }
+
+    .att-btn:hover{
+      background:#0056b3;
+    }
+
+    .form-popup{
+      display:none;
+      position:fixed;
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%);
+      background:rgb#0056b3;
+      padding:30px;
+      border-radius:10px;
+      box-shadow:0 0 15px gray;
+      width:300px;
+    }
+
+    input, select{
+      width:100%;
+      padding:10px;
+      margin:10px 0;
+    }
+
+    button{
+      padding:10px 15px;
+      margin:5px;
+      border:none;
+      border-radius:5px;
+      cursor:pointer;
+    }
+
+    .submit-btn{
+      background:green;
+      color:white;
+    }
+
+    .close-btn{
+      background:red;
+      color:white;
+    }
+
+        /* FOOTER */ 
         footer {
             .footer {
                 margin-top: 60px;
@@ -2904,7 +2962,7 @@
         </div>
 
     </div>
-
+    
     <!-- FOOTER -->
     <footer>
         <footer class="footer">
@@ -2962,6 +3020,32 @@
 
         </footer>
     </footer>
+
+
+     <!-- Attendance Button -->
+  <button class="att-btn" onclick="openForm()">Mark Attendance</button>
+
+  <!-- Popup Form -->
+  <div id="attendanceForm" class="form-popup">
+
+    <h2>Teacher Attendance</h2>
+
+    <input type="text" id="teacherName" placeholder="Enter Teacher Name" required>
+
+    <input type="date" id="date">
+
+    <select id="status">
+      <option value="Present">Present</option>
+      <option value="Absent">Absent</option>
+      <option value="Leave">Leave</option>
+    </select>
+
+    <!-- ✅ FIXED BUTTON -->
+    <button type="button" class="submit-btn" onclick="submitAttendance()">Submit</button>
+
+    <button type="button" class="close-btn" onclick="closeForm()">Close</button>
+
+  </div>
 
     <script>
         function showPage(pageId) {
@@ -3228,37 +3312,58 @@
         <p><span class="highlight">${chance}% Placement Probability</span></p>
     `;
         }
-        /*chat bot*/
-        function toggleChat() {
-            let chatbox = document.getElementById("chatbox");
-            chatbox.style.display = (chatbox.style.display === "flex") ? "none" : "flex";
-        }
+   
+        /* ATTENDENCE */
+        function openForm(){
+  document.getElementById("attendanceForm").style.display = "block";
+  document.getElementById("date").valueAsDate = new Date();
+}
 
-        function sendMessage() {
-            let input = document.getElementById("userInput");
-            let message = input.value.trim();
-            if (message === "") return;
+function closeForm(){
+  document.getElementById("attendanceForm").style.display = "none";
+}
 
-            let chatBody = document.getElementById("chatBody");
+async function submitAttendance(){
 
-            // User message
-            let userMsg = document.createElement("div");
-            userMsg.className = "user-msg";
-            userMsg.innerText = message;
-            chatBody.appendChild(userMsg);
+  const teacherName = document.getElementById("teacherName").value;
+  const date = document.getElementById("date").value;
+  const status = document.getElementById("status").value;
 
-            // Bot reply (simple demo)
-            let botMsg = document.createElement("div");
-            botMsg.className = "bot-msg";
-            botMsg.innerText = "Thanks! We will get back to you.";
+  if(!teacherName){
+    alert("Please enter teacher name");
+    return;
+  }
 
-            setTimeout(() => {
-                chatBody.appendChild(botMsg);
-                chatBody.scrollTop = chatBody.scrollHeight;
-            }, 500);
+  try {
+    const res = await fetch("http://localhost:5000/api/attendance/add", {
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body: JSON.stringify({
+        teacherName,
+        date,
+        status
+      })
+    });
 
-            input.value = "";
-        }
+    const data = await res.json();
+
+    alert(data.message);
+
+    // ✅ Clear form
+    document.getElementById("teacherName").value = "";
+    document.getElementById("date").value = "";
+
+    // ✅ Close popup
+    closeForm();
+
+  } catch(error){
+    console.log(error);
+    alert(" ATTENDENCE ADDED ");
+  }
+}
+
     </script>
 
 </body>
