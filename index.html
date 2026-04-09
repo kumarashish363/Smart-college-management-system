@@ -1,1815 +1,1744 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>College Portal</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>College Portal</title>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
 
-        .active {
-            display: block;
-        }
+.active{
+    display:block;
+}
+/* 🔥 BLUR BACKGROUND EFFECT (USE THIS PAGE ONLY, NOT HOME PAGE) */
+body{
+    color:white;
+    min-height:100vh;
+    position:relative;
+    overflow-x:hidden;
+}
 
-        /* 🔥 BLUR BACKGROUND EFFECT (USE THIS PAGE ONLY, NOT HOME PAGE) */
-        body {
-            color: white;
-            min-height: 100vh;
-            position: relative;
-            overflow-x: hidden;
-        }
+body::before{
+    content:"";
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    filter:blur(12px); /* 🔥 MAIN BLUR */
+    z-index:-1;
+}
+/* NAVBAR */
+.navbar{
+  position:fixed;
+  top:0;
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px 30px;
+  background:rgba(0,0,0,0.3);
+  backdrop-filter:blur(10px);
+  color:white;
+  z-index:1000;
+}
 
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-            filter: blur(12px);
-            /* 🔥 MAIN BLUR */
-            z-index: -1;
-        }
+.logo-box{
+  display:flex;
+  align-items:left;
+  gap:10px;
+}
 
-        /* NAVBAR */
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 30px;
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
-            color: white;
-            z-index: 1000;
-        }
+.logo-box img{
+  width:50px;
+  height:50px;
+}
 
-        .logo-box {
-            display: flex;
-            align-items: left;
-            gap: 10px;
-        }
+.logo-text small{
+  display:block;
+  font-size:12px;
+}
 
-        .logo-box img {
-            width: 50px;
-            height: 50px;
-        }
+.navbar ul{
+  display:flex;
+  list-style:none;
+}
 
-        .logo-text small {
-            display: block;
-            font-size: 12px;
-        }
+.navbar ul li{
+  margin:0 10px;
+}
 
-        .navbar ul {
-            display: flex;
-            list-style: none;
-        }
+.navbar a{
+  color:white;
+  text-decoration:none;
+  cursor:pointer;
+}
 
-        .navbar ul li {
-            margin: 0 10px;
-        }
+/* HOME */
+.home{
+  height:100vh;
+  background:url('https://roland.ac.in/assets/images/banner.jpeg') no-repeat center/cover;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
 
-        .navbar a {
-            color: white;
-            text-decoration: none;
-            cursor: pointer;
-        }
+.overlay{
+  background:rgba(0,0,0,0.6);
+  padding:40px;
+  color:white;
+  text-align:center;
+}
 
-        /* HOME */
-        .home {
-            height: 100vh;
-            background: url('ROLANDFRONTVIEW.png') no-repeat center/cover;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+/* PAGES */
+.page{
+  display:none;
+  padding:100px 40px;
+}
 
-        .overlay {
-            background: rgba(0, 0, 0, 0.6);
-            padding: 40px;
-            color: white;
-            text-align: center;
-        }
+.active{
+  display:block;
+}
 
-        /* PAGES */
-        .page {
-            display: none;
-            padding: 100px 40px;
-        }
+/* TABLE */
+table{
+  width:100%;
+  border-collapse:collapse;
+}
+table,th,td{
+  border:1px solid #333;
+  padding:10px;
+}
 
-        .active {
-            display: block;
-        }
+/* CARDS */
+.card-container{
+  display:flex;
+  flex-wrap:wrap;
+  gap:20px;
+}
+.card{
+  flex:1 1 200px;
+  background:#f4f4f4;
+  padding:20px;
+  border-radius:10px;
+}
 
-        /* TABLE */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        table,
-        th,
-        td {
-            border: 1px solid #333;
-            padding: 10px;
-        }
-
-        /* CARDS */
-        .card-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .card {
-            flex: 1 1 200px;
-            background: #f4f4f4;
-            padding: 20px;
-            border-radius: 10px;
-        }
-
-        /* =========================
+/* =========================
    ABOUT MAIN CONTAINER (GLASS EFFECT)
 ========================= */
-        .about-main {
-            display: flex;
-            gap: 40px;
-            padding: 60px;
+.about-main{
+    display: flex;
+    gap: 40px;
+    padding: 60px;
 
-            background: rgba(195, 239, 247, 0.34);
-            /* transparent glass */
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
+    background: rgba(195, 239, 247, 0.34); /* transparent glass */
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
 
-            border-radius: 25px;
-            box-shadow: 0 12px 35px rgba(16, 16, 16, 0.35);
+    border-radius: 25px;
+    box-shadow: 0 12px 35px rgba(16, 16, 16, 0.35);
 
-            align-items: center;
-        }
+    align-items: center;
+}
 
-        /* =========================
+/* =========================
    LEFT IMAGE (ENLARGED)
 ========================= */
 
-        .about-image {
-            flex: 1.2;
-            min-width: 380px;
-        }
+.about-image{
+    flex: 1.2;
+    min-width: 380px;
+}
 
-        .about-image img {
-            width: 100%;
-            height: 420px;
-            /* increased size */
-            object-fit: cover;
+.about-image img{
+    width: 100%;
+    height: 420px;   /* increased size */
+    object-fit: cover;
 
-            border-radius: 18px;
+    border-radius: 18px;
 
-            transform: scale(1.02);
-            /* slight zoom effect */
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-        }
+    transform: scale(1.02); /* slight zoom effect */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
 
-        /* =========================
+/* =========================
    RIGHT CONTENT (DARKER TEXT)
 ========================= */
 
-        .about-content {
-            flex: 2;
-            padding: 10px 25px;
+.about-content{
+    flex: 2;
+    padding: 10px 25px;
 
-            color: #1a1a1a;
-            /* darker base */
-        }
+    color: #1a1a1a; /* darker base */
+}
 
-        /* HEADINGS */
-        .about-content h2 {
-            font-size: 34px;
-            margin-bottom: 12px;
-            color: #e5eff4;
-            /* deep dark blue */
-        }
+/* HEADINGS */
+.about-content h2{
+    font-size: 34px;
+    margin-bottom: 12px;
+    color: #e5eff4; /* deep dark blue */
+}
 
-        .about-content h3 {
-            margin-top: 18px;
-            color: #f8f4f4;
-            /* strong dark */
-        }
+.about-content h3{
+    margin-top: 18px;
+    color: #f8f4f4; /* strong dark */
+}
 
-        /* PARAGRAPHS */
-        .about-content p {
-            font-size: 16px;
-            line-height: 1.7;
-            color: #222222;
-            /* darker readability */
-        }
+/* PARAGRAPHS */
+.about-content p{
+    font-size: 16px;
+    line-height: 1.7;
+    color: #222222; /* darker readability */
+}
 
-        /* LIST ITEMS */
-        .about-content ul li {
-            margin-bottom: 8px;
-            color: #2a2a2a;
-            /* dark grey */
-        }
+/* LIST ITEMS */
+.about-content ul li{
+    margin-bottom: 8px;
+    color: #2a2a2a; /* dark grey */
+}
 
-        /* =========================
+/* =========================
    FEATURE SECTION (BOTTOM)
 ========================= */
-        .about-features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-            gap: 20px;
-            margin-top: 35px;
-            padding: 20px;
-        }
+.about-features{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 20px;
+    margin-top: 35px;
+    padding: 20px;
+}
 
-        /* FEATURE BOX */
-        .feature-box {
-            text-align: center;
-            padding: 22px;
+/* FEATURE BOX */
+.feature-box{
+    text-align: center;
+    padding: 22px;
 
-            border-radius: 16px;
+    border-radius: 16px;
 
-            background: rgba(250, 247, 247, 0.08);
-            /* darker glass */
-            backdrop-filter: blur(10px);
+    background: rgba(250, 247, 247, 0.08); /* darker glass */
+    backdrop-filter: blur(10px);
 
-            color: #f5f1f1;
-            font-weight: 500;
+    color: #f5f1f1;
+    font-weight: 500;
 
-            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.2);
 
-            transition: 0.3s ease;
-        }
+    transition: 0.3s ease;
+}
 
-        /* HOVER EFFECT */
-        .feature-box:hover {
-            transform: translateY(-8px);
-            background: rgba(0, 150, 200, 0.15);
-        }
-
-        /* =========================
+/* HOVER EFFECT */
+.feature-box:hover{
+    transform: translateY(-8px);
+    background: rgba(0, 150, 200, 0.15);
+}
+/* =========================
    FULL GALLERY PAGE GLASS EFFECT
 ========================= */
 
-        .gallery-page {
-            padding: 40px;
-        }
+.gallery-page{
+    padding: 40px;
+}
 
-        /* MAIN CONTAINER */
-        .gallery-wrapper {
-            background: rgba(255, 255, 255, 0.12);
-            backdrop-filter: blur(22px);
-            -webkit-backdrop-filter: blur(22px);
+/* MAIN CONTAINER */
+.gallery-wrapper{
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
 
-            border-radius: 25px;
-            padding: 40px;
+    border-radius: 25px;
+    padding: 40px;
 
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
-        }
+    box-shadow: 0 15px 40px rgba(0,0,0,0.35);
+}
 
-        /* =========================
+/* =========================
    HERO SECTION
 ========================= */
 
-        .gallery-hero {
-            text-align: center;
-            margin-bottom: 30px;
+.gallery-hero{
+    text-align: center;
+    margin-bottom: 30px;
 
-            color: #fbf6f6;
-        }
+    color: #fbf6f6;
+}
 
-        .gallery-hero h1 {
-            font-size: 38px;
-            color: #f4f7f9;
-        }
+.gallery-hero h1{
+    font-size: 38px;
+    color: #f4f7f9;
+}
 
-        .gallery-hero p {
-            font-size: 16px;
-            color: #f9f3f3;
-            line-height: 1.6;
-        }
+.gallery-hero p{
+    font-size: 16px;
+    color: #f9f3f3;
+    line-height: 1.6;
+}
 
-        /* =========================
+/* =========================
    GRID LAYOUT
 ========================= */
 
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 25px;
-        }
+.gallery-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 25px;
+}
 
-        /* =========================
+/* =========================
    GLASS BOX CARDS WITH SHADOW
 ========================= */
 
-        .gallery-card {
-            background: rgba(255, 255, 255, 0.10);
-            backdrop-filter: blur(14px);
+.gallery-card{
+    background: rgba(255, 255, 255, 0.10);
+    backdrop-filter: blur(14px);
 
-            border-radius: 18px;
-            overflow: hidden;
+    border-radius: 18px;
+    overflow: hidden;
 
-            /* SHADOW BOX EFFECT */
-            box-shadow:
-                0 10px 20px rgba(0, 0, 0, 0.25),
-                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    /* SHADOW BOX EFFECT */
+    box-shadow:
+        0 10px 20px rgba(0,0,0,0.25),
+        inset 0 1px 0 rgba(255,255,255,0.3);
 
-            transition: 0.35s ease;
-        }
+    transition: 0.35s ease;
+}
 
-        /* IMAGE */
-        .gallery-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
+/* IMAGE */
+.gallery-card img{
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
 
-            transition: 0.4s ease;
-        }
+    transition: 0.4s ease;
+}
 
-        /* TEXT */
-        .gallery-card p {
-            text-align: center;
-            padding: 12px;
-            font-weight: 500;
-            color: #fff7f7;
-        }
+/* TEXT */
+.gallery-card p{
+    text-align: center;
+    padding: 12px;
+    font-weight: 500;
+    color: #fff7f7;
+}
 
-        /* HOVER EFFECT */
-        .gallery-card:hover {
-            transform: translateY(-10px);
+/* HOVER EFFECT */
+.gallery-card:hover{
+    transform: translateY(-10px);
 
-            box-shadow:
-                0 18px 35px rgba(0, 0, 0, 0.35),
-                inset 0 1px 0 rgba(255, 255, 255, 0.4);
-        }
+    box-shadow:
+        0 18px 35px rgba(0,0,0,0.35),
+        inset 0 1px 0 rgba(255,255,255,0.4);
+}
 
-        .gallery-card:hover img {
-            transform: scale(1.08);
-        }
+.gallery-card:hover img{
+    transform: scale(1.08);
+}
+<!--courses-->
+/* Container */
+.course-container {
+    padding: 40px;
+}
 
-        /* courses */
+/* Grid Layout (3 per row) */
+.course-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
 
-        /* Container */
-        .course-container {
-            padding: 40px;
-        }
+/* Box Design */
+.course-box {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 15px;
+    text-align: center;
+    color: white;
+    transition: 0.3s;
+}
 
-        /* Grid Layout (3 per row) */
-        .course-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-        }
+.course-box:hover {
+    transform: scale(1.05);
+}
 
-        /* Box Design */
-        .course-box {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 15px;
-            text-align: center;
-            color: white;
-            transition: 0.3s;
-        }
+/* Image */
+.course-box img {
+    width: 100%;
+    height: 140px;
+    border-radius: 10px;
+}
 
-        .course-box:hover {
-            transform: scale(1.05);
-        }
+/* Button */
+button {
+    margin-top: 10px;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 8px;
+    background: #00bcd4;
+    color: white;
+    cursor: pointer;
+}
 
-        /* Image */
-        .course-box img {
-            width: 100%;
-            height: 140px;
-            border-radius: 10px;
-        }
+button:hover {
+    background: #0097a7;
+}
 
-        /* Button */
-        button {
-            margin-top: 10px;
-            padding: 6px 12px;
-            border: none;
-            border-radius: 8px;
-            background: #00bcd4;
-            color: white;
-            cursor: pointer;
-        }
+/* Hidden Details */
+.details {
+    display: none;
+    margin-top: 10px;
+    text-align: left;
+    font-size: 14px;
+}
+/*faculty*/
+/* MAIN BIG BOX */
+.main-box {
+    width: 90%;
+    margin: 30px auto;
+    padding: 20px;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(12px);
+    border-radius: 20px;
+}
 
-        button:hover {
-            background: #0097a7;
-        }
+/* TOP FACULTY */
+/* NAVBAR */
+.navbar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    padding:15px 30px;
+    display:flex;
+    justify-content:flex-end;
+    z-index:1000;
+}
 
-        /* Hidden Details */
-        .details {
-            display: none;
-            margin-top: 10px;
-            text-align: left;
-            font-size: 14px;
-        }
+.home-btn{
+    padding:8px 18px;
+    border:none;
+    border-radius:20px;
+    background:#00ffd5;
+    color:black;
+    cursor:pointer;
+}
 
-        /*faculty*/
-        /* MAIN BIG BOX */
-        .main-box {
-            width: 90%;
-            margin: 30px auto;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(12px);
-            border-radius: 20px;
-        }
+.container{
+    padding:80px 30px 30px;
+}
 
-        /* TOP FACULTY */
-        /* NAVBAR */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 15px 30px;
-            display: flex;
-            justify-content: flex-end;
-            z-index: 1000;
-        }
+h1{
+    text-align:center;
+    margin-bottom:10px;
+}
 
-        .home-btn {
-            padding: 8px 18px;
-            border: none;
-            border-radius: 20px;
-            background: #00ffd5;
-            color: black;
-            cursor: pointer;
-        }
+.subtitle{
+    text-align:center;
+    opacity:0.8;
+    margin-bottom:30px;
+}
 
-        .container {
-            padding: 80px 30px 30px;
-        }
+/* TOP CARDS */
+.top-cards{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-bottom:40px;
+}
 
-        h1 {
-            text-align: center;
-            margin-bottom: 10px;
-        }
+.top-card{
+    width:180px;
+    background:rgba(255,255,255,0.15);
+    padding:15px;
+    border-radius:15px;
+    text-align:center;
+    backdrop-filter:blur(10px);
+    box-shadow:0 8px 20px rgba(0,0,0,0.4);
+}
 
-        .subtitle {
-            text-align: center;
-            opacity: 0.8;
-            margin-bottom: 30px;
-        }
+.top-card img{
+    width:100%;
+    border-radius:10px;
+    margin-bottom:8px;
+}
 
-        /* TOP CARDS */
-        .top-cards {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-bottom: 40px;
-        }
+.hod-info{
+    font-size:11px;
+    opacity:0.9;
+}
 
-        .top-card {
-            width: 180px;
-            background: rgba(255, 255, 255, 0.15);
-            padding: 15px;
-            border-radius: 15px;
-            text-align: center;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-        }
+/* DEPARTMENTS GRID */
+.departments{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
 
-        .top-card img {
-            width: 100%;
-            border-radius: 10px;
-            margin-bottom: 8px;
-        }
+.dept-card{
+    background:rgba(255,255,255,0.15);
+    padding:15px;
+    border-radius:15px;
+    text-align:center;
+    backdrop-filter:blur(10px);
+    transition:0.3s;
+    font-size:14px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.4);
+}
 
-        .hod-info {
-            font-size: 11px;
-            opacity: 0.9;
-        }
+.dept-card:hover{
+    transform:scale(1.05);
+}
 
-        /* DEPARTMENTS GRID */
-        .departments {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-        }
+.dept-card img{
+    width:100%;
+    height:100px;
+    object-fit:cover;
+    border-radius:10px;
+    margin-bottom:8px;
+}
 
-        .dept-card {
-            background: rgba(255, 255, 255, 0.15);
-            padding: 15px;
-            border-radius: 15px;
-            text-align: center;
-            backdrop-filter: blur(10px);
-            transition: 0.3s;
-            font-size: 14px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-        }
+.hod-name{
+    font-weight:600;
+    font-size:13px;
+}
 
-        .dept-card:hover {
-            transform: scale(1.05);
-        }
+.view-btn{
+    margin-top:8px;
+    padding:6px 12px;
+    border:none;
+    border-radius:15px;
+    background:#00ffd5;
+    color:black;
+    cursor:pointer;
+    font-size:12px;
+}
 
-        .dept-card img {
-            width: 100%;
-            height: 100px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 8px;
-        }
+/* MODAL */
+.modal{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.8);
+    display:none;
+    justify-content:center;
+    align-items:center;
+}
 
-        .hod-name {
-            font-weight: 600;
-            font-size: 13px;
-        }
+.modal-content{
+    background:white;
+    color:black;
+    padding:20px;
+    border-radius:15px;
+    width:95%;
+    max-width:900px;
+    max-height:80vh;
+    overflow:auto;
+}
 
-        .view-btn {
-            margin-top: 8px;
-            padding: 6px 12px;
-            border: none;
-            border-radius: 15px;
-            background: #00ffd5;
-            color: black;
-            cursor: pointer;
-            font-size: 12px;
-        }
+.close-btn{
+    float:right;
+    cursor:pointer;
+    font-weight:bold;
+}
 
-        /* MODAL */
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            display: none;
-            justify-content: center;
-            align-items: center;
-        }
+/* TABLE */
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+}
 
-        .modal-content {
-            background: white;
-            color: black;
-            padding: 20px;
-            border-radius: 15px;
-            width: 95%;
-            max-width: 900px;
-            max-height: 80vh;
-            overflow: auto;
-        }
+th, td{
+    padding:10px;
+    border:1px solid #ddd;
+    text-align:center;
+}
 
-        .close-btn {
-            float: right;
-            cursor: pointer;
-            font-weight: bold;
-        }
+th{
+    background:#00ffd5;
+}
 
-        /* TABLE */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
+/*fee*/
+/* MAIN */
+.fees-container {
+    width: 90%;
+    margin: 50px auto;
+    text-align: center;
+}
 
-        th,
-        td {
-            padding: 10px;
-            border: 1px solid #ddd;
-            text-align: center;
-        }
+.fees-title {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+}
 
-        th {
-            background: #00ffd5;
-        }
+/* GRID */
+.fees-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
 
-        /*fee*/
-        /* MAIN */
-        .fees-container {
-            width: 90%;
-            margin: 50px auto;
-            text-align: center;
-        }
+.fee-card {
+    padding: 20px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(15px);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    position: relative;
+    transition: 0.4s;
 
-        .fees-title {
-            font-size: 2.5rem;
-            margin-bottom: 30px;
-        }
-
-        /* GRID */
-        .fees-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-        }
-
-        .fee-card {
-            padding: 20px;
-            border-radius: 20px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(15px);
-            border: 2px solid transparent;
-            background-clip: padding-box;
-            position: relative;
-            transition: 0.4s;
-
-            /* 🔥 BOX SHADOW (DEPTH) */
-            box-shadow:
-                0 8px 25px rgba(0, 0, 0, 0.4),
-                0 0 10px rgba(0, 198, 255, 0.2);
-        }
+    /* 🔥 BOX SHADOW (DEPTH) */
+    box-shadow: 
+        0 8px 25px rgba(0,0,0,0.4),
+        0 0 10px rgba(0,198,255,0.2);
+}
 
 
-        /* GLOW BORDER */
-        .fee-card::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            border-radius: 20px;
-            padding: 2px;
-            background: linear-gradient(45deg, #00c6ff, #0072ff) -webkit-mask linear-gradient(#fff 0 0) content-box,
-                linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
+/* GLOW BORDER */
+.fee-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    padding: 2px;
+    background: linear-gradient(45deg, #00c6ff, #0072ff)
+    -webkit-mask
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
             mask-composite: exclude;
-        }
-
-        /* HOVER UPGRADE */
-        .fee-card:hover {
-            transform: translateY(-12px) scale(1.05);
-
-            box-shadow:
-                0 15px 35px rgba(0, 0, 0, 0.6),
-                0 0 20px rgba(0, 198, 255, 0.6);
-        }
-
-        /* TITLE */
-        .fee-card h2 {
-            color: #00c6ff;
-            margin-bottom: 15px;
-        }
-
-        /* ITEMS */
-        .fee-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin: 10px 0;
-        }
-
-        .fee-item i {
-            color: #00c6ff;
-        }
-
-        /* TOTAL */
-        .total {
-            font-weight: bold;
-            font-size: 1.1rem;
-            color: #00ffcc;
-        }
-
-        /* EXTRA */
-        .extra {
-            margin-top: 15px;
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-
-        /*notes*/
-        body {
-            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-            font-family: Arial, sans-serif;
-        }
-
-        .notes-section {
-            padding: 40px;
-            text-align: center;
-        }
-
-        /* Title */
-        .notes-title {
-            color: #fff;
-            margin-bottom: 20px;
-        }
-
-        /* Search */
-        .search-box input {
-            width: 50%;
-            padding: 12px;
-            border-radius: 25px;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            outline: none;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
-        }
-
-        /* Grid */
-        .notes-container {
-            margin-top: 30px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 25px;
-        }
-
-        /* Note Card */
-        .note-box {
-            padding: 20px;
-            border-radius: 20px;
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(15px);
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow:
-                0 10px 30px rgba(0, 0, 0, 0.5),
-                inset 0 0 10px rgba(255, 255, 255, 0.1);
-            transition: 0.3s ease;
-        }
-
-        /* Hover Effect */
-        .note-box:hover {
-            transform: translateY(-12px) scale(1.03);
-            box-shadow:
-                0 15px 40px rgba(0, 0, 0, 0.8),
-                0 0 20px rgba(0, 198, 255, 0.6);
-        }
-
-        /* Logos */
-        .dept-logo {
-            width: 60px;
-            margin-bottom: 10px;
-        }
-
-        /* Button */
-        .note-box button {
-            margin-top: 10px;
-            padding: 8px 18px;
-            border-radius: 10px;
-            border: none;
-            background: linear-gradient(45deg, #00c6ff, #0072ff);
-            color: white;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-        }
-
-        .note-box button:hover {
-            background: linear-gradient(45deg, #0072ff, #00c6ff);
-        }
-
-        /*alumin*/
-        .container {
-            padding: 40px;
-        }
-
-        .title {
-            text-align: center;
-            font-size: 40px;
-            margin-bottom: 10px;
-        }
-
-        .subtitle {
-            text-align: center;
-            opacity: 0.85;
-            margin-bottom: 40px;
-        }
-
-        /* Search Bar */
-        .search-box {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 40px;
-        }
-
-        .search-box input {
-            width: 50%;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 30px;
-            outline: none;
-            font-size: 16px;
-            background: rgba(255, 255, 255, 0.15);
-            color: white;
-        }
-
-        .search-box input::placeholder {
-            color: #ddd;
-        }
-
-        /* Alumni Grid */
-        .alumni-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-        }
-
-        .card {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(12px);
-            border-radius: 20px;
-            padding: 20px;
-            text-align: center;
-            transition: 0.4s;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .card:hover {
-            transform: translateY(-10px) scale(1.05);
-        }
-
-        .card img {
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
-            margin-bottom: 10px;
-            border: 3px solid white;
-        }
-
-        .name {
-            font-size: 18px;
-            font-weight: 600;
-        }
-
-        .branch {
-            font-size: 14px;
-            opacity: 0.85;
-        }
-
-        .company {
-            margin: 10px 0;
-            font-size: 14px;
-            color: #00ffd5;
-            font-weight: 500;
-        }
-
-        .btn {
-            padding: 8px 15px;
-            border: none;
-            border-radius: 20px;
-            background: #00ffd5;
-            color: black;
-            cursor: pointer;
-            font-size: 13px;
-        }
-
-        /* Social Links */
-        .socials {
-            margin-top: 10px;
-        }
-
-        .socials a {
-            margin: 0 6px;
-            text-decoration: none;
-            font-size: 18px;
-            color: white;
-            transition: 0.3s;
-        }
-
-        .socials a:hover {
-            color: #00ffd5;
-        }
-
-        /* Networking Section */
-        .network-section {
-            margin-top: 60px;
-        }
-
-        .network-title {
-            text-align: center;
-            font-size: 28px;
-            margin-bottom: 30px;
-        }
-
-        .network-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-        }
-
-        .network-card {
-            background: rgba(255, 255, 255, 0.15);
-            padding: 25px;
-            border-radius: 20px;
-            text-align: center;
-            backdrop-filter: blur(12px);
-            transition: 0.4s;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .network-card:hover {
-            transform: scale(1.07);
-        }
-
-        .join-btn {
-            margin-top: 15px;
-            padding: 8px 15px;
-            border: none;
-            border-radius: 20px;
-            background: #00ffd5;
-            color: black;
-            cursor: pointer;
-        }
-
-        /* Popup */
-        .popup {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            display: none;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .popup-content {
-            background: #1c1c1c;
-            padding: 30px;
-            border-radius: 15px;
-            width: 300px;
-            text-align: center;
-        }
-
-        .close {
-            margin-top: 20px;
-            background: red;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 10px;
-            cursor: pointer;
-        }
-
-        /* Stats Section */
-        .stats {
-            display: flex;
-            justify-content: space-around;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-        }
-
-        .stat-box {
-            background: rgba(255, 255, 255, 0.15);
-            padding: 20px;
-            border-radius: 15px;
-            margin: 10px;
-            text-align: center;
-            width: 150px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .stat-box h2 {
-            color: #00ffd5;
-        }
-
-        /*company*/
-        .container {
-            padding: 40px;
-        }
-
-        .title {
-            text-align: center;
-            font-size: 42px;
-            margin-bottom: 10px;
-        }
-
-        .subtitle {
-            text-align: center;
-            opacity: 0.85;
-            margin-bottom: 30px;
-        }
-
-        .stats {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-bottom: 40px;
-        }
-
-        .stat-box {
-            background: rgba(255, 255, 255, 0.15);
-            padding: 15px 25px;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            text-align: center;
-        }
-
-        .stat-box h2 {
-            color: #00ffd5;
-        }
-
-        .filter-bar {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            padding: 10px 18px;
-            border: none;
-            border-radius: 25px;
-            background: rgba(255, 255, 255, 0.15);
-            color: white;
-            cursor: pointer;
-        }
-
-        .filter-btn:hover {
-            background: #00ffd5;
-            color: black;
-        }
-
-        .company-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-
-        .company-card {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(12px);
-            border-radius: 20px;
-            padding: 25px;
-            transition: 0.4s;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            position: relative;
-        }
-
-        .company-card:hover {
-            transform: translateY(-12px) scale(1.05);
-        }
-
-        .badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: #00ffd5;
-            color: black;
-            padding: 5px 10px;
-            border-radius: 10px;
-            font-size: 12px;
-        }
-
-        .logo {
-            width: 70px;
-            margin-bottom: 10px;
-        }
-
-        .company-name {
-            font-size: 22px;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .info {
-            font-size: 14px;
-            margin: 6px 0;
-            opacity: 0.9;
-        }
-
-        .highlight {
-            color: #00ffd5;
-            font-weight: 500;
-        }
-
-        .progress {
-            height: 6px;
-            background: #333;
-            border-radius: 10px;
-            margin-top: 8px;
-        }
-
-        .progress-bar {
-            height: 100%;
-            background: #00ffd5;
-            border-radius: 10px;
-        }
-
-        .explore-btn {
-            margin-top: 15px;
-            padding: 8px 15px;
-            border: none;
-            border-radius: 20px;
-            background: #00ffd5;
-            color: black;
-            cursor: pointer;
-        }
-
-        .popup {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            display: none;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .popup-content {
-            background: #1c1c1c;
-            padding: 30px;
-            border-radius: 15px;
-            width: 350px;
-            text-align: center;
-        }
-
-        .close {
-            margin-top: 20px;
-            padding: 8px 15px;
-            border: none;
-            background: red;
-            color: white;
-            border-radius: 10px;
-            cursor: pointer;
-        }
-
-        /*admission*/
-        .container {
-            padding: 40px;
-        }
-
-        .title {
-            text-align: center;
-            font-size: 42px;
-            margin-bottom: 10px;
-        }
-
-        .subtitle {
-            text-align: center;
-            opacity: 0.85;
-            margin-bottom: 40px;
-        }
-
-        .section {
-            margin-bottom: 40px;
-        }
-
-        .section h2 {
-            margin-bottom: 20px;
-            color: #00ffd5;
-            text-align: center;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-        }
-
-        .card {
-            background: rgba(255, 255, 255, 0.15);
-            padding: 25px;
-            border-radius: 20px;
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-            transition: 0.3s;
-        }
-
-        .card:hover {
-            transform: scale(1.05);
-        }
-
-        .card h3 {
-            margin-bottom: 10px;
-            color: #00ffd5;
-        }
-
-        .card p {
-            font-size: 14px;
-            margin: 6px 0;
-            opacity: 0.9;
-        }
-
-        ul {
-            padding-left: 18px;
-        }
-
-        li {
-            margin: 6px 0;
-            font-size: 14px;
-        }
-
-        .highlight {
-            color: #00ffd5;
-            font-weight: 500;
-        }
-
-        /*prediction*/
-        .navbar {
-            width: 100%;
-            padding: 15px 30px;
-            display: flex;
-            justify-content: flex-end;
-        }
-
-        .home-btn {
-            padding: 8px 18px;
-            border: none;
-            border-radius: 20px;
-            background: #00ffd5;
-            color: black;
-            font-size: 14px;
-            cursor: pointer;
-            width: auto;
-            /* IMPORTANT FIX */
-        }
-
-        /* CENTERING FIX */
-        .main {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .predictor-box {
-            width: 90%;
-            max-width: 480px;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(12px);
-            padding: 30px;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        h1 {
-            margin-bottom: 10px;
-        }
-
-        p {
-            opacity: 0.8;
-            margin-bottom: 20px;
-        }
-
-        input,
-        select {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: none;
-            border-radius: 10px;
-            outline: none;
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-        }
-
-        select option {
-            color: black;
-        }
-
-        input::placeholder {
-            color: #ddd;
-        }
-
-        /* FIXED BUTTON STYLE (ONLY INSIDE BOX) */
-        .predict-btn {
-            width: 100%;
-            padding: 12px;
-            border: none;
-            border-radius: 25px;
-            background: #00ffd5;
-            color: black;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        .result {
-            margin-top: 20px;
-            padding: 15px;
-            border-radius: 15px;
-            background: rgba(255, 255, 255, 0.15);
-            display: none;
-        }
-
-        .highlight {
-            color: #00ffd5;
-            font-weight: 600;
-        }
-
-        .progress {
-            height: 8px;
-            background: #333;
-            border-radius: 10px;
-            margin-top: 10px;
-        }
-
-        .progress-bar {
-            height: 100%;
-            background: #00ffd5;
-            border-radius: 10px;
-        }
-
-        /*chat bot*/
-        /* FLOATING BUTTON */
-        #chatbot-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 55px;
-            height: 55px;
-            background: linear-gradient(135deg, #d5e7f0, #2575fc);
-            color: rgb(19, 155, 233);
-            font-size: 24px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-            z-index: 9999;
-        }
-
-        /* CHATBOX */
-        #chatbox {
-            position: fixed;
-            bottom: 90px;
-            right: 20px;
-            width: 300px;
-            height: 400px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(15px);
-            border-radius: 15px;
-            display: none;
-            flex-direction: column;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-            z-index: 9999;
-        }
-
-        /* HEADER */
-        .chat-header {
-            background: linear-gradient(135deg, #6a11cb, #060a1136);
-            padding: 10px;
-            color: rgba(18, 18, 17, 0.184);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        /* BODY */
-        .chat-body {
-            flex: 1;
-            padding: 10px;
-            overflow-y: auto;
-            font-size: 14px;
-        }
-
-        /* MESSAGES */
-        .bot-msg {
-            background: #eee;
-            padding: 8px;
-            margin: 5px 0;
-            border-radius: 10px;
-        }
-
-        .user-msg {
-            background: #dff3f6;
-            color: rgb(7, 7, 7);
-            padding: 8px;
-            margin: 5px 0;
-            border-radius: 10px;
-            text-align: right;
-        }
-
-        /* FOOTER */
-        .chat-footer {
-            display: flex;
-            padding: 10px;
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .chat-footer input {
-            flex: 1;
-            padding: 5px;
-            border: none;
-            border-radius: 5px;
-            outline: none;
-        }
-
-        .chat-footer button {
-            margin-left: 5px;
-            padding: 5px 10px;
-            border: none;
-            background: #2575fc;
-            color: white;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        /*login*/
-        /* 📦 Login Container */
-        #Student\ Login .login-container {
-            width: 360px;
-            padding: 30px;
-            border-radius: 20px;
-            backdrop-filter: blur(15px);
-            background: rgba(255, 255, 255, 0.08);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            text-align: center;
-        }
-
-        /* 📝 Title */
-        #Student\ Login h2 {
-            color: white;
-            margin-bottom: 20px;
-        }
-
-        /* 🔤 Input Fields */
-        #Student\ Login .input-box {
-            position: relative;
-            margin: 10px 0;
-        }
-
-        #Student\ Login .input-box input {
-            width: 100%;
-            padding: 12px;
-            border: none;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.15);
-            color: white;
-            outline: none;
-            font-size: 14px;
-        }
-
-        #Student\ Login input::placeholder {
-            color: #ddd;
-        }
-
-        /* 🔘 Get OTP button (same color as login) */
-        #Student\ Login .get-otp {
-            position: absolute;
-            right: 5px;
-            top: 5px;
-            padding: 6px 10px;
-            border: none;
-            border-radius: 8px;
-            font-size: 12px;
-            cursor: pointer;
-            color: white;
-            background: linear-gradient(45deg, #00c6ff, #0072ff);
-        }
-
-        /* 🔵 Login Button */
-        #Student\ Login .login-btn {
-            width: 100%;
-            padding: 12px;
-            margin-top: 15px;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            color: white;
-            font-size: 16px;
-            background: linear-gradient(45deg, #00c6ff, #0072ff);
-            transition: 0.3s;
-        }
-
-        #Student\ Login .login-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 15px rgba(0, 114, 255, 0.6);
-        }
-
-        /* 🔗 Links */
-        #Student\ Login .extra-links {
-            margin-top: 15px;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        #Student\ Login .extra-links a {
-            color: #ccc;
-            font-size: 13px;
-            text-decoration: none;
-            transition: 0.3s;
-        }
-
-        #Student\ Login .extra-links a:hover {
-            color: #fff;
-        }
-
-        /* 📱 Responsive */
-        @media(max-width:400px) {
-            #Student\ Login .login-container {
-                width: 90%;
-            }
-        }
-
-        /*apply now*/
-        /* CONTAINER */
-        #Apply\ Now .applynow-container {
-            width: 90%;
-            max-width: 500px;
-            padding: 25px;
-            border-radius: 15px;
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(15px);
-            box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
-            color: #fff;
-        }
-
-        /* TITLE */
-        #Apply\ Now h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        /* INPUT BOX */
-        #Apply\ Now .input-box {
-            position: relative;
-            margin-bottom: 15px;
-        }
-
-        #Apply\ Now .input-box input,
-        #Apply\ Now .input-box select {
-            width: 100%;
-            padding: 10px;
-            border: none;
-            outline: none;
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.2);
-            color: #fff;
-        }
-
-        /* LABEL */
-        #Apply\ Now .input-box label {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            font-size: 13px;
-            color: #ddd;
-            pointer-events: none;
-            transition: 0.3s;
-        }
-
-        /* FLOAT EFFECT */
-        #Apply\ Now .input-box input:focus+label,
-        #Apply\ Now .input-box input:valid+label,
-        #Apply\ Now .input-box select:focus+label,
-        #Apply\ Now .input-box select:valid+label {
-            top: -8px;
-            left: 8px;
-            font-size: 11px;
-            background: #000;
-            padding: 2px 5px;
-            border-radius: 5px;
-        }
-
-        /* FILE INPUT */
-        #Apply\ Now .file-box {
-            margin-bottom: 15px;
-        }
-
-        #Apply\ Now .file-box label {
-            font-size: 13px;
-            color: #ccc;
-        }
-
-        #Apply\ Now .file-box input {
-            width: 100%;
-            margin-top: 5px;
-            padding: 8px;
-            border-radius: 6px;
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            color: white;
-        }
-
-        /* BUTTON (BLUE - NOT RED) */
-        #Apply\ Now .btn {
-            width: 100%;
-            padding: 12px;
-            border: none;
-            border-radius: 8px;
-            background: linear-gradient(45deg, #00c6ff, #0072ff);
-            color: white;
-            font-size: 15px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        #Apply\ Now .btn:hover {
-            transform: scale(1.05);
-        }
-
-        /* PROFILE LINK */
-        #Apply\ Now .profile {
-            text-align: center;
-            margin-top: 15px;
-        }
-
-        #Apply\ Now .profile a {
-            color: #00c6ff;
-            text-decoration: none;
-        }
-          /*ATTENDENCE*/
-
-         body{
-      font-family: Arial;
-      text-align:center;
-      margin-top:100px;
+}
+/* HOVER UPGRADE */
+.fee-card:hover {
+    transform: translateY(-12px) scale(1.05);
+
+    box-shadow: 
+        0 15px 35px rgba(0,0,0,0.6),
+        0 0 20px rgba(0,198,255,0.6);
+}
+
+/* TITLE */
+.fee-card h2 {
+    color: #00c6ff;
+    margin-bottom: 15px;
+}
+
+/* ITEMS */
+.fee-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.fee-item i {
+    color: #00c6ff;
+}
+
+/* TOTAL */
+.total {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #00ffcc;
+}
+
+/* EXTRA */
+.extra {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+/*notes*/
+body {
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    font-family: Arial, sans-serif;
+}
+
+.notes-section {
+    padding: 40px;
+    text-align: center;
+}
+
+/* Title */
+.notes-title {
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+/* Search */
+.search-box input {
+    width: 50%;
+    padding: 12px;
+    border-radius: 25px;
+    border: 2px solid rgba(255,255,255,0.2);
+    outline: none;
+    background: rgba(255,255,255,0.1);
+    color: white;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 15px rgba(0,0,0,0.4);
+}
+
+/* Grid */
+.notes-container {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+}
+
+/* Note Card */
+.note-box {
+    padding: 20px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(15px);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 
+        0 10px 30px rgba(0,0,0,0.5),
+        inset 0 0 10px rgba(255,255,255,0.1);
+    transition: 0.3s ease;
+}
+
+/* Hover Effect */
+.note-box:hover {
+    transform: translateY(-12px) scale(1.03);
+    box-shadow: 
+        0 15px 40px rgba(0,0,0,0.8),
+        0 0 20px rgba(0,198,255,0.6);
+}
+
+/* Logos */
+.dept-logo {
+    width: 60px;
+    margin-bottom: 10px;
+}
+
+/* Button */
+.note-box button {
+    margin-top: 10px;
+    padding: 8px 18px;
+    border-radius: 10px;
+    border: none;
+    background: linear-gradient(45deg, #00c6ff, #0072ff);
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+
+.note-box button:hover {
+    background: linear-gradient(45deg, #0072ff, #00c6ff);
+}
+
+/*alumin*/
+.container{
+    padding:40px;
+}
+
+.title{
+    text-align:center;
+    font-size:40px;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    text-align:center;
+    opacity:0.85;
+    margin-bottom:40px;
+}
+
+/* Search Bar */
+.search-box{
+    display:flex;
+    justify-content:center;
+    margin-bottom:40px;
+}
+
+.search-box input{
+    width:50%;
+    padding:12px 20px;
+    border:none;
+    border-radius:30px;
+    outline:none;
+    font-size:16px;
+    background:rgba(255,255,255,0.15);
+    color:white;
+}
+
+.search-box input::placeholder{
+    color:#ddd;
+}
+
+/* Alumni Grid */
+.alumni-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(12px);
+    border-radius:20px;
+    padding:20px;
+    text-align:center;
+    transition:0.4s;
+    position:relative;
+    overflow:hidden;
+    box-shadow:0 10px 30px rgba(0,0,0,0.4);
+    border:1px solid rgba(255,255,255,0.2);
+}
+
+.card:hover{
+    transform:translateY(-10px) scale(1.05);
+}
+
+.card img{
+    width:90px;
+    height:90px;
+    border-radius:50%;
+    margin-bottom:10px;
+    border:3px solid white;
+}
+
+.name{
+    font-size:18px;
+    font-weight:600;
+}
+
+.branch{
+    font-size:14px;
+    opacity:0.85;
+}
+
+.company{
+    margin:10px 0;
+    font-size:14px;
+    color:#00ffd5;
+    font-weight:500;
+}
+
+.btn{
+    padding:8px 15px;
+    border:none;
+    border-radius:20px;
+    background:#00ffd5;
+    color:black;
+    cursor:pointer;
+    font-size:13px;
+}
+
+/* Social Links */
+.socials{
+    margin-top:10px;
+}
+
+.socials a{
+    margin:0 6px;
+    text-decoration:none;
+    font-size:18px;
+    color:white;
+    transition:0.3s;
+}
+
+.socials a:hover{
+    color:#00ffd5;
+}
+
+/* Networking Section */
+.network-section{
+    margin-top:60px;
+}
+
+.network-title{
+    text-align:center;
+    font-size:28px;
+    margin-bottom:30px;
+}
+
+.network-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.network-card{
+    background:rgba(255,255,255,0.15);
+    padding:25px;
+    border-radius:20px;
+    text-align:center;
+    backdrop-filter:blur(12px);
+    transition:0.4s;
+    box-shadow:0 10px 25px rgba(0,0,0,0.4);
+    border:1px solid rgba(255,255,255,0.2);
+}
+
+.network-card:hover{
+    transform:scale(1.07);
+}
+
+.join-btn{
+    margin-top:15px;
+    padding:8px 15px;
+    border:none;
+    border-radius:20px;
+    background:#00ffd5;
+    color:black;
+    cursor:pointer;
+}
+
+/* Popup */
+.popup{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.7);
+    display:none;
+    justify-content:center;
+    align-items:center;
+}
+
+.popup-content{
+    background:#1c1c1c;
+    padding:30px;
+    border-radius:15px;
+    width:300px;
+    text-align:center;
+}
+
+.close{
+    margin-top:20px;
+    background:red;
+    color:white;
+    border:none;
+    padding:8px 15px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+/* Stats Section */
+.stats{
+    display:flex;
+    justify-content:space-around;
+    margin-bottom:40px;
+    flex-wrap:wrap;
+}
+
+.stat-box{
+    background:rgba(255,255,255,0.15);
+    padding:20px;
+    border-radius:15px;
+    margin:10px;
+    text-align:center;
+    width:150px;
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,0.2);
+}
+
+.stat-box h2{
+    color:#00ffd5;
+}
+/*company*/
+.container{padding:40px;}
+.title{text-align:center;font-size:42px;margin-bottom:10px;}
+.subtitle{text-align:center;opacity:0.85;margin-bottom:30px;}
+
+.stats{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:40px;}
+.stat-box{background:rgba(255,255,255,0.15);padding:15px 25px;border-radius:15px;backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.2);text-align:center;}
+.stat-box h2{color:#00ffd5;}
+
+.filter-bar{display:flex;justify-content:center;gap:15px;margin-bottom:40px;flex-wrap:wrap;}
+.filter-btn{padding:10px 18px;border:none;border-radius:25px;background:rgba(255,255,255,0.15);color:white;cursor:pointer;}
+.filter-btn:hover{background:#00ffd5;color:black;}
+
+.company-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:25px;}
+
+.company-card{background:rgba(255,255,255,0.15);backdrop-filter:blur(12px);border-radius:20px;padding:25px;transition:0.4s;box-shadow:0 10px 30px rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.2);position:relative;}
+.company-card:hover{transform:translateY(-12px) scale(1.05);} 
+
+.badge{position:absolute;top:15px;right:15px;background:#00ffd5;color:black;padding:5px 10px;border-radius:10px;font-size:12px;}
+
+.logo{width:70px;margin-bottom:10px;}
+.company-name{font-size:22px;font-weight:600;margin-bottom:10px;}
+.info{font-size:14px;margin:6px 0;opacity:0.9;}
+.highlight{color:#00ffd5;font-weight:500;}
+
+.progress{height:6px;background:#333;border-radius:10px;margin-top:8px;}
+.progress-bar{height:100%;background:#00ffd5;border-radius:10px;}
+
+.explore-btn{margin-top:15px;padding:8px 15px;border:none;border-radius:20px;background:#00ffd5;color:black;cursor:pointer;}
+
+.popup{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);display:none;justify-content:center;align-items:center;}
+.popup-content{background:#1c1c1c;padding:30px;border-radius:15px;width:350px;text-align:center;}
+.close{margin-top:20px;padding:8px 15px;border:none;background:red;color:white;border-radius:10px;cursor:pointer;}
+
+/*admission*/
+.container{padding:40px;}
+
+.title{text-align:center;font-size:42px;margin-bottom:10px;}
+.subtitle{text-align:center;opacity:0.85;margin-bottom:40px;}
+
+.section{margin-bottom:40px;}
+.section h2{margin-bottom:20px;color:#00ffd5;text-align:center;}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px;}
+
+.card{
+    background:rgba(255,255,255,0.15);
+    padding:25px;border-radius:20px;
+    backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,0.2);
+    box-shadow:0 10px 30px rgba(0,0,0,0.4);
+    transition:0.3s;
+}
+
+.card:hover{transform:scale(1.05);} 
+
+.card h3{margin-bottom:10px;color:#00ffd5;}
+.card p{font-size:14px;margin:6px 0;opacity:0.9;}
+
+ul{padding-left:18px;}
+li{margin:6px 0;font-size:14px;}
+
+.highlight{color:#00ffd5;font-weight:500;}
+
+/*prediction*/
+.navbar{
+    width:100%;
+    padding:15px 30px;
+    display:flex;
+    justify-content:flex-end;
+}
+
+.home-btn{
+    padding:8px 18px;
+    border:none;
+    border-radius:20px;
+    background:#00ffd5;
+    color:black;
+    font-size:14px;
+    cursor:pointer;
+    width:auto; /* IMPORTANT FIX */
+}
+
+/* CENTERING FIX */
+.main{
+    flex:1;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.predictor-box{
+    width:90%;
+    max-width:480px;
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(12px);
+    padding:30px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,0.4);
+    border:1px solid rgba(255,255,255,0.2);
+}
+
+h1{margin-bottom:10px;}
+p{opacity:0.8;margin-bottom:20px;}
+
+input, select{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border:none;
+    border-radius:10px;
+    outline:none;
+    background:rgba(255,255,255,0.2);
+    color:white;
+}
+
+select option{color:black;}
+input::placeholder{color:#ddd;}
+
+/* FIXED BUTTON STYLE (ONLY INSIDE BOX) */
+.predict-btn{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:25px;
+    background:#00ffd5;
+    color:black;
+    font-weight:600;
+    cursor:pointer;
+    margin-top:10px;
+}
+
+.result{
+    margin-top:20px;
+    padding:15px;
+    border-radius:15px;
+    background:rgba(255,255,255,0.15);
+    display:none;
+}
+
+.highlight{color:#00ffd5;font-weight:600;}
+
+.progress{
+    height:8px;
+    background:#333;
+    border-radius:10px;
+    margin-top:10px;
+}
+
+.progress-bar{
+    height:100%;
+    background:#00ffd5;
+    border-radius:10px;
+}
+/*chat bot*/
+/* FLOATING BUTTON */
+#chatbot-btn{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 55px;
+    height: 55px;
+    background: linear-gradient(135deg, #d5e7f0, #2575fc);
+    color: rgb(19, 155, 233);
+    font-size: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    z-index: 9999;
+}
+
+/* CHATBOX */
+#chatbox{
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 300px;
+    height: 400px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(15px);
+    border-radius: 15px;
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    z-index: 9999;
+}
+
+/* HEADER */
+.chat-header{
+    background: linear-gradient(135deg, #6a11cb, #060a1136);
+    padding: 10px;
+    color: rgba(18, 18, 17, 0.184);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* BODY */
+.chat-body{
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    font-size: 14px;
+}
+
+/* MESSAGES */
+.bot-msg{
+    background: #eee;
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 10px;
+}
+
+.user-msg{
+    background: #dff3f6;
+    color: rgb(7, 7, 7);
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 10px;
+    text-align: right;
+}
+
+/*attendance*/
+/* Sidebar */
+.sidebar {
+    width: 220px;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+}
+
+.sidebar h2 {
+    margin-bottom: 20px;
+}
+
+.sidebar button {
+    width: 100%;
+    margin-bottom: 10px;
+    background: transparent;
+    border: none;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.sidebar button:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+/* Main */
+.main {
+    flex: 1;
+    padding: 20px;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.header button {
+    background: linear-gradient(45deg, #00c6ff, #0072ff);
+}
+
+/* Cards */
+.cards {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.card {
+    flex: 1;
+    padding: 20px;
+    border-radius: 15px;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+    text-align: center;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px) scale(1.02);
+}
+
+/* Table */
+.table-container {
+    background: rgba(255,255,255,0.05);
+    border-radius: 15px;
+    padding: 15px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    text-align: left;
+    padding: 10px;
+    opacity: 0.7;
+}
+
+td {
+    padding: 10px;
+}
+
+tr {
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+tr:hover {
+    background: rgba(255,255,255,0.05);
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-box {
+    background: #1e293b;
+    padding: 20px;
+    border-radius: 15px;
+    width: 300px;
+}
+
+input, select {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+}
+
+/* Buttons */
+button {
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    color: white;
+}
+
+/* FOOTER */
+.chat-footer{
+    display: flex;
+    padding: 10px;
+    background: rgba(255,255,255,0.2);
+}
+
+.chat-footer input{
+    flex: 1;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+}
+
+.chat-footer button{
+    margin-left: 5px;
+    padding: 5px 10px;
+    border: none;
+    background: #2575fc;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/*login*/
+/* 📦 Login Container */
+#Student\ Login .login-container{
+    width:360px;
+    padding:30px;
+    border-radius:20px;
+    backdrop-filter: blur(15px);
+    background: rgba(255,255,255,0.08);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    border:1px solid rgba(255,255,255,0.2);
+    text-align:center;
+}
+
+/* 📝 Title */
+#Student\ Login h2{
+    color:white;
+    margin-bottom:20px;
+}
+
+/* 🔤 Input Fields */
+#Student\ Login .input-box{
+    position:relative;
+    margin:10px 0;
+}
+
+#Student\ Login .input-box input{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    background: rgba(255,255,255,0.15);
+    color:white;
+    outline:none;
+    font-size:14px;
+}
+
+#Student\ Login input::placeholder{
+    color:#ddd;
+}
+
+/* 🔘 Get OTP button (same color as login) */
+#Student\ Login .get-otp{
+    position:absolute;
+    right:5px;
+    top:5px;
+    padding:6px 10px;
+    border:none;
+    border-radius:8px;
+    font-size:12px;
+    cursor:pointer;
+    color:white;
+    background: linear-gradient(45deg, #00c6ff, #0072ff);
+}
+
+/* 🔵 Login Button */
+#Student\ Login .login-btn{
+    width:100%;
+    padding:12px;
+    margin-top:15px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    color:white;
+    font-size:16px;
+    background: linear-gradient(45deg, #00c6ff, #0072ff);
+    transition:0.3s;
+}
+
+#Student\ Login .login-btn:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 15px rgba(0,114,255,0.6);
+}
+
+/* 🔗 Links */
+#Student\ Login .extra-links{
+    margin-top:15px;
+    display:flex;
+    justify-content:space-between;
+}
+
+#Student\ Login .extra-links a{
+    color:#ccc;
+    font-size:13px;
+    text-decoration:none;
+    transition:0.3s;
+}
+
+#Student\ Login .extra-links a:hover{
+    color:#fff;
+}
+
+/* 📱 Responsive */
+@media(max-width:400px){
+    #Student\ Login .login-container{
+        width:90%;
     }
+}
 
-    .att-btn{
-      background:#007bff;
-      color:rgb#0056b3;
-      padding:15px 30px;
-      border:none;
-      border-radius:8px;
-      font-size:18px;
-      cursor:pointer;
-    }
+/*apply now*/
+/* CONTAINER */
+#Apply\ Now .applynow-container{
+    width:90%;
+    max-width:500px;
+    padding:25px;
+    border-radius:15px;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 0 25px rgba(0,0,0,0.4);
+    color:#fff;
+}
 
-    .att-btn:hover{
-      background:#0056b3;
-    }
+/* TITLE */
+#Apply\ Now h2{
+    text-align:center;
+    margin-bottom:20px;
+}
 
-    .form-popup{
-      display:none;
-      position:fixed;
-      top:50%;
-      left:50%;
-      transform:translate(-50%,-50%);
-      background:rgb#0056b3;
-      padding:30px;
-      border-radius:10px;
-      box-shadow:0 0 15px gray;
-      width:300px;
-    }
+/* INPUT BOX */
+#Apply\ Now .input-box{
+    position:relative;
+    margin-bottom:15px;
+}
 
-    input, select{
-      width:100%;
-      padding:10px;
-      margin:10px 0;
-    }
+#Apply\ Now .input-box input,
+#Apply\ Now .input-box select{
+    width:100%;
+    padding:10px;
+    border:none;
+    outline:none;
+    border-radius:8px;
+    background: rgba(255,255,255,0.2);
+    color:#fff;
+}
 
-    button{
-      padding:10px 15px;
-      margin:5px;
-      border:none;
-      border-radius:5px;
-      cursor:pointer;
-    }
+/* LABEL */
+#Apply\ Now .input-box label{
+    position:absolute;
+    top:10px;
+    left:10px;
+    font-size:13px;
+    color:#ddd;
+    pointer-events:none;
+    transition:0.3s;
+}
 
-    .submit-btn{
-      background:green;
-      color:white;
-    }
+/* FLOAT EFFECT */
+#Apply\ Now .input-box input:focus + label,
+#Apply\ Now .input-box input:valid + label,
+#Apply\ Now .input-box select:focus + label,
+#Apply\ Now .input-box select:valid + label{
+    top:-8px;
+    left:8px;
+    font-size:11px;
+    background:#000;
+    padding:2px 5px;
+    border-radius:5px;
+}
 
-    .close-btn{
-      background:red;
-      color:white;
-    }
+/* FILE INPUT */
+#Apply\ Now .file-box{
+    margin-bottom:15px;
+}
 
-        /* FOOTER */ 
-        footer {
-            .footer {
-                margin-top: 60px;
-                padding: 60px 20px 25px;
-                background: #0f172a;
-                color: #e5e7eb;
-            }
+#Apply\ Now .file-box label{
+    font-size:13px;
+    color:#ccc;
+}
 
-            /* WRAPPER */
-            .footer-wrapper {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-                gap: 20px;
-            }
+#Apply\ Now .file-box input{
+    width:100%;
+    margin-top:5px;
+    padding:8px;
+    border-radius:6px;
+    background: rgba(255,255,255,0.2);
+    border:none;
+    color:white;
+}
 
-            /* CARD */
-            .footer-card {
-                background: rgba(255, 255, 255, 0.04);
-                border: 1px solid rgba(255, 255, 255, 0.08);
-                padding: 20px;
-                border-radius: 16px;
-                transition: 0.3s;
-                backdrop-filter: blur(10px);
-            }
+/* BUTTON (BLUE - NOT RED) */
+#Apply\ Now .btn{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    background: linear-gradient(45deg,#00c6ff,#0072ff);
+    color:white;
+    font-size:15px;
+    cursor:pointer;
+    transition:0.3s;
+}
 
-            .footer-card:hover {
-                transform: translateY(-5px);
-                border-color: rgba(0, 255, 213, 0.3);
-            }
+#Apply\ Now .btn:hover{
+    transform:scale(1.05);
+}
 
-            /* BRAND */
-            .logo {
-                font-size: 18px;
-                font-weight: 600;
-                margin-bottom: 10px;
-            }
+/* PROFILE LINK */
+#Apply\ Now .profile{
+    text-align:center;
+    margin-top:15px;
+}
 
-            .tag {
-                margin-top: 10px;
-                font-size: 12px;
-                color: #00ffd5;
-            }
+#Apply\ Now .profile a{
+    color:#00c6ff;
+    text-decoration:none;
+}
 
-            /* HEADINGS */
-            .footer-card h4 {
-                margin-bottom: 10px;
-                font-size: 14px;
-                color: #ffffff;
-            }
+/*attendance*/
+/* HEADER */
+h1 {
+    padding: 20px;
+}
 
-            /* TEXT */
-            .footer-card p {
-                font-size: 13px;
-                opacity: 0.8;
-                margin: 6px 0;
-            }
+/* CARD */
+.card {
+    background: rgba(255,255,255,0.15);
+    padding: 20px;
+    border-radius: 15px;
+    width: 85%;
+    margin: auto;
+    backdrop-filter: blur(10px);
+}
 
-            /* CHIPS */
-            .chips span {
-                display: inline-block;
-                margin-top: 10px;
-                margin-right: 6px;
-                padding: 4px 10px;
-                font-size: 11px;
-                border-radius: 20px;
-                background: rgba(0, 255, 213, 0.1);
-                border: 1px solid rgba(0, 255, 213, 0.2);
-                color: #00ffd5;
-            }
+/* INPUT */
+input, select {
+    padding: 10px;
+    margin: 8px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+}
 
-            /* LIST STYLE */
-            .list p {
-                padding: 4px 0;
-                border-left: 2px solid rgba(0, 255, 213, 0.4);
-                padding-left: 8px;
-            }
+/* BUTTON */
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 5px;
+    font-weight: bold;
+}
 
-            /* BOTTOM BAR */
-            .footer-bottom {
-                text-align: center;
-                margin-top: 30px;
-                font-size: 12px;
-                opacity: 0.6;
-            }
-        }
-    </style>
+.present {
+    background: #00c853;
+    color: white;
+}
+
+.absent {
+    background: #d50000;
+    color: white;
+}
+
+.clear {
+    background: orange;
+    color: white;
+}
+
+/* TABLE */
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px;
+    background: rgba(255,255,255,0.1);
+}
+
+th {
+    background: rgba(0,0,0,0.3);
+}
+
+/* SEARCH */
+.search-box {
+    margin-top: 10px;
+}
+
+/* FOOTER */
+footer{
+.footer{
+    margin-top:60px;
+    padding:60px 20px 25px;
+    background:#0f172a;
+    color:#e5e7eb;
+}
+
+/* WRAPPER */
+.footer-wrapper{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:20px;
+}
+
+/* CARD */
+.footer-card{
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(255,255,255,0.08);
+    padding:20px;
+    border-radius:16px;
+    transition:0.3s;
+    backdrop-filter:blur(10px);
+}
+
+.footer-card:hover{
+    transform:translateY(-5px);
+    border-color:rgba(0,255,213,0.3);
+}
+
+/* BRAND */
+.logo{
+    font-size:18px;
+    font-weight:600;
+    margin-bottom:10px;
+}
+
+.tag{
+    margin-top:10px;
+    font-size:12px;
+    color:#00ffd5;
+}
+
+/* HEADINGS */
+.footer-card h4{
+    margin-bottom:10px;
+    font-size:14px;
+    color:#ffffff;
+}
+
+/* TEXT */
+.footer-card p{
+    font-size:13px;
+    opacity:0.8;
+    margin:6px 0;
+}
+
+/* CHIPS */
+.chips span{
+    display:inline-block;
+    margin-top:10px;
+    margin-right:6px;
+    padding:4px 10px;
+    font-size:11px;
+    border-radius:20px;
+    background:rgba(0,255,213,0.1);
+    border:1px solid rgba(0,255,213,0.2);
+    color:#00ffd5;
+}
+
+/* LIST STYLE */
+.list p{
+    padding:4px 0;
+    border-left:2px solid rgba(0,255,213,0.4);
+    padding-left:8px;
+}
+
+/* BOTTOM BAR */
+.footer-bottom{
+    text-align:center;
+    margin-top:30px;
+    font-size:12px;
+    opacity:0.6;
+}
+}
+</style>
 </head>
-
 <body>
-
     <!-- NAVBAR -->
-    <div class="navbar">
-        <div class="logo-box">
-            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135755.png">
-            <div class="logo-text">
-                <small>Welcome to!</small>
-                <b>ROLAND INSTITUTE OF TECHNOLOGY</b>
-            </div>
-        </div>
-
-        <!-- NAVBAR (ONLY HOME BUTTONS CONTROL PAGES) -->
-        <nav>
-            <a onclick="showPage('home')">Home</a>
-            <a onclick="showPage('about')">About</a>
-            <a onclick="showPage('gallery')">Gyallery</a>
-            <a onclick="showPage('courses')">Courses</a>
-            <a onclick="showPage('faculty')">Faculty</a>
-            <a onclick="showPage('fees')">Fees</a>
-            <a onclick="showPage('notes')">Notes</a>
-            <a onclick="showPage('alumni')">Alumni</a>
-            <a onclick="showPage('companies')">Companies</a>
-            <a onclick="showPage('admission')">Admission</a>
-            <a onclick="showPage('prediction')">Prediction</a>
-            <button class="btn" onclick="showPage('Student Login')">🎓Student Login</button>
-        </nav>
+<div class="navbar">
+  <div class="logo-box">
+    <img src="https://www.roland.ac.in/assets/images/logo.png">
+    <div class="logo-text">
+        <small>Welcome to!</small>
+      <b>ROLAND INSTITUTE OF TECHNOLOGY</b>
     </div>
+  </div>
 
-    <!-- HOME -->
-    <section id="home" class="home page active">
-        <div class="overlay">
-            <h1>Welcome to!ROLAND INSTITUTE OF TECHNOLOGY</h1>
-            <p>Empowering future Engineers with excellent education,innovation, and industry exposure.</p>
-            <button class="btn" onclick="showPage('Apply Now')">Apply Now</button>
-        </div>
-    </section>
+<!-- NAVBAR (ONLY HOME BUTTONS CONTROL PAGES) -->
+    <nav>
+        <a onclick="showPage('home')">Home</a>
+        <a onclick="showPage('about')">About</a>
+        <a onclick="showPage('gallery')">Gyallery</a>
+        <a onclick="showPage('courses')">Courses</a>
+        <a onclick="showPage('faculty')">Faculty</a>
+        <a onclick="showPage('fees')">Fees</a>
+        <a onclick="showPage('notes')">Notes</a>
+        <a onclick="showPage('alumni')">Alumni</a>
+        <a onclick="showPage('companies')">Companies</a>
+        <a onclick="showPage('admission')">Admission</a>
+        <a onclick="showPage('prediction')">Prediction</a>
+        <button class="btn" onclick="showPage('Student Login')">🎓Student Login</button>
+    </nav>
+  </div>
 
-    <!-- login PAGE -->
+<!-- HOME -->
+<section id="home" class="home page active">
+  <div class="overlay">
+    <h1>Welcome to!ROLAND INSTITUTE OF TECHNOLOGY</h1>
+    <p>Empowering future Engineers with excellent education,innovation, and industry exposure.</p>
+    <button class="btn" onclick="showPage('Apply Now')">Apply Now</button>
+    <button class="btn" onclick="showPage('attendance')">🎓Attendance</button>
+  </div>
+</section> 
+
+<!-- login PAGE -->
     <div id="Student Login" class="page">
         <div class="login-container">
             <h2>Student Login</h2>
@@ -1849,1318 +1778,1223 @@
             </form>
         </div>
     </div>
-    </div>
+</div> 
 
-    <!--Apply now-->
+<!--Apply now-->
     <div id="Apply Now" class="page">
         <div class="applynow-container">
             <h2>Apply Now</h2>
 
-            <form>
+    <form>
 
-                <div class="input-box">
-                    <input type="text" required>
-                    <label>Full Name</label>
-                </div>
-
-                <div class="input-box">
-                    <input type="email" required>
-                    <label>Gmail</label>
-                </div>
-
-                <div class="input-box">
-                    <input type="tel" required>
-                    <label>Phone Number</label>
-                </div>
-
-                <div class="input-box">
-                    <input type="text" required>
-                    <label>JEE Registration Number</label>
-                </div>
-
-                <div class="input-box">
-                    <select required>
-                        <option value=""></option>
-                        <option>B.Tech</option>
-                        <option>M.Tech</option>
-                        <option>BCA</option>
-                        <option>MBA</option>
-                    </select>
-                    <label>Select Course</label>
-                </div>
-
-                <div class="input-box">
-                    <select required>
-                        <option value=""></option>
-                        <option>CSE</option>
-                        <option>Mechanical</option>
-                        <option>Civil</option>
-                        <option>Electrical</option>
-                    </select>
-                    <label>Preferred Branch</label>
-                </div>
-
-                <div class="input-box">
-                    <input type="text" required>
-                    <label>City</label>
-                </div>
-
-                <!-- FILES -->
-                <div class="file-box">
-                    <label>Upload Aadhar Card</label>
-                    <input type="file" required>
-                </div>
-
-                <div class="file-box">
-                    <label>Upload JEE Certificate</label>
-                    <input type="file" required>
-                </div>
-
-                <div class="file-box">
-                    <label>Upload +2 Result</label>
-                    <input type="file" required>
-                </div>
-
-                <button type="submit" class="btn">Submit Application</button>
-
-            </form>
-
-            <div class="profile">
-                <p>Create account to save data</p>
-                <a href="#">Make Your Profile</a>
-            </div>
-
+        <div class="input-box">
+            <input type="text" required>
+            <label>Full Name</label>
         </div>
+
+        <div class="input-box">
+            <input type="email" required>
+            <label>Gmail</label>
+        </div>
+
+        <div class="input-box">
+            <input type="tel" required>
+            <label>Phone Number</label>
+        </div>
+
+        <div class="input-box">
+            <input type="text" required>
+            <label>JEE Registration Number</label>
+        </div>
+
+        <div class="input-box">
+            <select required>
+                <option value=""></option>
+                <option>B.Tech</option>
+                <option>M.Tech</option>
+                <option>BCA</option>
+                <option>MBA</option>
+            </select>
+            <label>Select Course</label>
+        </div>
+
+        <div class="input-box">
+            <select required>
+                <option value=""></option>
+                <option>CSE</option>
+                <option>Mechanical</option>
+                <option>Civil</option>
+                <option>Electrical</option>
+            </select>
+            <label>Preferred Branch</label>
+        </div>
+
+        <div class="input-box">
+            <input type="text" required>
+            <label>City</label>
+        </div>
+
+        <!-- FILES -->
+        <div class="file-box">
+            <label>Upload Aadhar Card</label>
+            <input type="file" required>
+        </div>
+
+        <div class="file-box">
+            <label>Upload JEE Certificate</label>
+            <input type="file" required>
+        </div>
+
+        <div class="file-box">
+            <label>Upload +2 Result</label>
+            <input type="file" required>
+        </div>
+
+        <button type="submit" class="btn">Submit Application</button>
+
+    </form>
+
+    <div class="profile">
+        <p>Create account to save data</p>
+        <a href="#">Make Your Profile</a>
     </div>
 
-    <!-- ABOUT -->
-    <section id="about" class="page">
-        <!-- TOP SECTION -->
-        <div class="about-main">
+    </div>
+</div>
 
-            <!-- LEFT IMAGE -->
-            <div class="about-image">
-                <img src="https://images.unsplash.com/photo-1562774053-701939374585">
-            </div>
+<!-- ABOUT -->
+<section id="about" class="page">
+  <!-- TOP SECTION -->
+    <div class="about-main">
 
-            <!-- RIGHT CONTENT -->
-            <div class="about-content">
-                <h2>About Roland Institute of Technology</h2>
-                <p>
-                    Roland Institute of Technology, Berhampur is one of the leading
-                    engineering colleges in Odisha. It is affiliated to BPUT, Rourkela
-                    and approved by AICTE.
-                </p>
-
-                <p>
-                    The institute offers quality education in engineering, management,
-                    and computer applications with modern infrastructure and experienced faculty.
-                </p>
-                <h3>Why Choose Our College?</h3>
-
-                <ul>
-                    <li>✔ Highly qualified and experienced faculty members</li>
-                    <li>✔ Modern infrastructure with smart classrooms</li>
-                    <li>✔ Well-equipped laboratories for practical learning</li>
-                    <li>✔ Strong placement support with top companies</li>
-                    <li>✔ Digital library with thousands of resources</li>
-                    <li>✔ Hostel and transport facilities available</li>
-                    <li>✔ Industry-oriented curriculum and training</li>
-                    <li>✔ Regular workshops, seminars, and hackathons</li>
-                </ul>
-
-                <h3>Our Highlights</h3>
-
-                <ul>
-                    <li>🎯 90%+ Placement Rate</li>
-                    <li>🏆 Students placed in top MNCs</li>
-                    <li>💡 Focus on innovation and startup culture</li>
-                    <li>🌐 Wi-Fi enabled campus</li>
-                    <li>⚽ Sports and extracurricular activities</li>
-                </ul>
-
-            </div>
-
+        <!-- LEFT IMAGE -->
+        <div class="about-image">
+            <img src="https://www.vidyavista.com/assets/user_photo/1ca9b4ce348f5f940af3cca3e3fc4c98.jpg">
         </div>
 
-        <!-- FEATURE BOXES -->
-        <div class="about-features">
-
-            <div class="feature-box">
-                🎓
-                <p>AICTE Approved</p>
-            </div>
-
-            <div class="feature-box">
-                🏫
-                <p>BPUT Affiliated</p>
-            </div>
-
-            <div class="feature-box">
-                💻
-                <p>Advanced Labs</p>
-            </div>
-
-            <div class="feature-box">
-                🌐
-                <p>Smart Classrooms</p>
-            </div>
-
-            <div class="feature-box">
-                🚀
-                <p>Innovation Hub</p>
-            </div>
-
-            <div class="feature-box">
-                📊
-                <p>Placement Support</p>
-            </div>
-
-        </div>
-
-        </div>
-    </section>
-
-    <!--Gyallery-->
-    <section id="gallery" class="page">
-        <!-- OVERVIEW -->
-        <div class="gallery-hero">
-            <h1>College Gallery</h1>
+        <!-- RIGHT CONTENT -->
+        <div class="about-content">
+            <h2>About Roland Institute of Technology</h2>
             <p>
-                Explore our campus life, cultural events, technical fests, sports activities,
-                and memorable moments of students at Roland Institute of Technology.
+                Roland Institute of Technology, Berhampur is one of the leading 
+                engineering colleges in Odisha. It is affiliated to BPUT, Rourkela 
+                and approved by AICTE.
             </p>
-        </div>
 
-        <!-- IMAGE GRID -->
-        <div class="gallery-grid">
+            <p>
+                The institute offers quality education in engineering, management, 
+                and computer applications with modern infrastructure and experienced faculty.
+            </p>
+                    <h3>Why Choose Our College?</h3>
 
-            <div class="gallery-card">
-                <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1">
-                <p>Annual Tech Fest</p>
-            </div>
+        <ul>
+            <li>✔ Highly qualified and experienced faculty members</li>
+            <li>✔ Modern infrastructure with smart classrooms</li>
+            <li>✔ Well-equipped laboratories for practical learning</li>
+            <li>✔ Strong placement support with top companies</li>
+            <li>✔ Digital library with thousands of resources</li>
+            <li>✔ Hostel and transport facilities available</li>
+            <li>✔ Industry-oriented curriculum and training</li>
+            <li>✔ Regular workshops, seminars, and hackathons</li>
+        </ul>
 
-            <div class="gallery-card">
-                <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644">
-                <p>Cultural Program</p>
-            </div>
+        <h3>Our Highlights</h3>
 
-            <div class="gallery-card">
-                <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d">
-                <p>Seminar Hall Session</p>
-            </div>
-
-            <div class="gallery-card">
-                <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7">
-                <p>Sports Day</p>
-            </div>
-
-            <div class="gallery-card">
-                <img src="https://images.unsplash.com/photo-1581091870620-3f6c8f7a6b36">
-                <p>Campus Life</p>
-            </div>
-
-            <div class="gallery-card">
-                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f">
-                <p>Group Learning</p>
-            </div>
-        </div>
-        </div>
-    </section>
-
-    <!-- COURSES -->
-    <section id="courses" class="page">
-        <div class="course-container">
-            <h1 style="color:white;text-align:center;">Our Departments</h1>
-
-            <div class="course-grid">
-
-                <!-- CSE -->
-                <div class="course-box">
-                    <img src="cse.jpg">
-                    <h3>CSE</h3>
-                    <button onclick="toggle(this)">View All</button>
-                    <div class="details">
-                        Duration: 4 Years <br>
-                        Seats: 120 <br>
-                        Fees: ₹4,00,000 <br>
-                        Qualification: B.Tech
-                    </div>
-                </div>
-
-                <!-- EE -->
-                <div class="course-box">
-                    <img src="ee.jpg">
-                    <h3>EE</h3>
-                    <button onclick="toggle(this)">View All</button>
-                    <div class="details">
-                        Duration: 4 Years <br>
-                        Seats: 90 <br>
-                        Fees: ₹3,50,000 <br>
-                        Qualification: B.Tech
-                    </div>
-                </div>
-
-                <!-- ECE -->
-                <div class="course-box">
-                    <img src="ece.jpg">
-                    <h3>ECE</h3>
-                    <button onclick="toggle(this)">View All</button>
-                    <div class="details">
-                        Duration: 4 Years <br>
-                        Seats: 100 <br>
-                        Fees: ₹3,80,000 <br>
-                        Qualification: B.Tech
-                    </div>
-                </div>
-
-                <!-- CIVIL -->
-                <div class="course-box">
-                    <img src="civil.jpg">
-                    <h3>CIVIL</h3>
-                    <button onclick="toggle(this)">View All</button>
-                    <div class="details">
-                        Duration: 4 Years <br>
-                        Seats: 80 <br>
-                        Fees: ₹3,00,000 <br>
-                        Qualification: B.Tech
-                    </div>
-                </div>
-
-                <!-- MECHANICAL -->
-                <div class="course-box">
-                    <img src="mech.jpg">
-                    <h3>MECHANICAL</h3>
-                    <button onclick="toggle(this)">View All</button>
-                    <div class="details">
-                        Duration: 4 Years <br>
-                        Seats: 85 <br>
-                        Fees: ₹3,20,000 <br>
-                        Qualification: B.Tech
-                    </div>
-                </div>
-
-                <!-- ELECTRICAL -->
-                <div class="course-box">
-                    <img src="electrical.jpg">
-                    <h3>ELECTRICAL</h3>
-                    <button onclick="toggle(this)">View All</button>
-                    <div class="details">
-                        Duration: 4 Years <br>
-                        Seats: 70 <br>
-                        Fees: ₹3,40,000 <br>
-                        Qualification: B.Tech
-                    </div>
-                </div>
-
-            </div>
-    </section>
-
-    <!--Faculty-->
-    <section id="faculty" class="page">
-        <div class="container">
-
-            <h1>Faculty Page</h1>
-            <p class="subtitle">Meet Our Leadership & Department Heads</p>
-
-            <!-- UPDATED TOP MANAGEMENT WITH DETAILS -->
-            <div class="top-cards">
-                <div class="top-card">
-                    <img src="https://via.placeholder.com/200">
-                    <h4>Dr. Gunamani Jena</h4>
-                    <div class="hod-info">Principal</div>
-                    <div class="hod-info">PhD (IIT Kharagpur)</div>
-                    <div class="hod-info">20+ Years Experience</div>
-                    <div class="hod-info">Specialization: Computer Networks</div>
-                </div>
-                <div class="top-card">
-                    <img src="https://via.placeholder.com/200">
-                    <h4>Prof. A. Mishra</h4>
-                    <div class="hod-info">Vice Principal</div>
-                    <div class="hod-info">M.Tech (NIT Rourkela)</div>
-                    <div class="hod-info">15+ Years Experience</div>
-                    <div class="hod-info">Specialization: VLSI Design</div>
-                </div>
-                <div class="top-card">
-                    <img src="https://via.placeholder.com/200">
-                    <h4>Dr. J.Jayalaxmi</h4>
-                    <div class="hod-info">Chairman</div>
-                    <div class="hod-info">MBA (IIM Bangalore)</div>
-                    <div class="hod-info">25+ Years Experience</div>
-                    <div class="hod-info">Expert in Education Management</div>
-                </div>
-            </div>
-
-            <!-- DEPARTMENTS WITH FULL HOD DETAILS -->
-            <div class="departments">
-
-                <div class="dept-card">
-                    <img src="https://via.placeholder.com/300">
-                    <h4>CSE</h4>
-                    <div class="hod-name">Dr. Sunil Kumar Sahu</div>
-                    <div class="hod-info">PhD (IIT Delhi)</div>
-                    <div class="hod-info">10+ Years Experience</div>
-                    <div class="hod-info">AI & Machine Learning</div>
-                    <button class="view-btn" onclick="openModal('cse')">View</button>
-                </div>
-
-                <div class="dept-card">
-                    <img src="https://via.placeholder.com/300">
-                    <h4>ECE</h4>
-                    <div class="hod-name">Prof. Kunja Bihari Nanda</div>
-                    <div class="hod-info">PhD (IISc Bangalore)</div>
-                    <div class="hod-info">10+ Years Experience</div>
-                    <div class="hod-info">VLSI & Embedded Systems</div>
-                    <button class="view-btn" onclick="openModal('ece')">View</button>
-                </div>
-
-                <div class="dept-card">
-                    <img src="https://via.placeholder.com/300">
-                    <h4>EE</h4>
-                    <div class="hod-name">Dr. Sanat Kumar Patro</div>
-                    <div class="hod-info">PhD (NIT Rourkela)</div>
-                    <div class="hod-info">9+ Years Experience</div>
-                    <div class="hod-info">Power Systems</div>
-                    <button class="view-btn" onclick="openModal('ee')">View</button>
-                </div>
-
-                <div class="dept-card">
-                    <img src="https://via.placeholder.com/300">
-                    <h4>ME</h4>
-                    <div class="hod-name">Dr. Rakesh ranjan Polai</div>
-                    <div class="hod-info">PhD (IIT Kanpur)</div>
-                    <div class="hod-info">7+ Years Experience</div>
-                    <div class="hod-info">Thermodynamics</div>
-                    <button class="view-btn" onclick="openModal('me')">View</button>
-                </div>
-
-                <div class="dept-card">
-                    <img src="https://via.placeholder.com/300">
-                    <h4>Civil</h4>
-                    <div class="hod-name">Mr. Subhendu Subhasis Sahu</div>
-                    <div class="hod-info">M.Tech (IIT Bombay)</div>
-                    <div class="hod-info">6+ Years Experience</div>
-                    <div class="hod-info">Structural Engineering</div>
-                    <button class="view-btn" onclick="openModal('civil')">View</button>
-                </div>
-                <div class="dept-card">
-                    <img src="https://via.placeholder.com/300">
-                    <h4>MBA</h4>
-                    <div class="hod-name">Mr.Ashish Kummar Dash</div>
-                    <div class="hod-info">M.tech (IIT Bombay)</div>
-                    <div class="hod-info">8+ Years experence</div>
-                    <div class="hod-info"></div>
-                    <button class="view-btn" onclick="openModal('MBA')">view</button>
-                </div>
-
-            </div>
+        <ul>
+            <li>🎯 90%+ Placement Rate</li>
+            <li>🏆 Students placed in top MNCs</li>
+            <li>💡 Focus on innovation and startup culture</li>
+            <li>🌐 Wi-Fi enabled campus</li>
+            <li>⚽ Sports and extracurricular activities</li>
+        </ul>
 
         </div>
 
-        <div class="modal" id="modal">
-            <div class="modal-content">
-                <span class="close-btn" onclick="closeModal()">X</span>
-                <h2 id="deptTitle"></h2>
+    </div>
 
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Qualification</th>
-                            <th>Experience</th>
-                            <th>Subject</th>
-                        </tr>
-                    </thead>
-                    <tbody id="facultyTable"></tbody>
-                </table>
+       <!-- FEATURE BOXES -->
+    <div class="about-features">
 
-            </div>
-        </div>
-    </section>
-
-    <!-- FEES -->
-    <section id="fees" class="page">
-        <!-- MAIN FEES CONTAINER -->
-        <div class="fees-container">
-
-            <h1 class="fees-title">Fee Structure</h1>
-
-            <div class="fees-grid">
-
-                <!-- CSE -->
-                <div class="fee-card">
-                    <h2>CSE</h2>
-
-                    <div class="fee-item">
-                        <i class="fa-solid fa-graduation-cap"></i>
-                        <span>Tuition Fee: ₹1,00,000</span>
-                    </div>
-
-                    <div class="fee-item">
-                        <i class="fa-solid fa-bed"></i>
-                        <span>Hostel Fee: ₹40,000</span>
-                    </div>
-
-                    <div class="fee-item total">
-                        <i class="fa-solid fa-wallet"></i>
-                        <span>Total: ₹1,40,000</span>
-                    </div>
-
-                    <div class="extra">
-                        <p>⏳ 4 Years</p>
-                        <p>🎓 120 Seats</p>
-                    </div>
-                </div>
-
-                <!-- ECE -->
-                <div class="fee-card">
-                    <h2>ECE</h2>
-
-                    <div class="fee-item">
-                        <i class="fa-solid fa-graduation-cap"></i>
-                        <span>Tuition Fee: ₹95,000</span>
-                    </div>
-
-                    <div class="fee-item">
-                        <i class="fa-solid fa-bed"></i>
-                        <span>Hostel Fee: ₹38,000</span>
-                    </div>
-
-                    <div class="fee-item total">
-                        <i class="fa-solid fa-wallet"></i>
-                        <span>Total: ₹1,33,000</span>
-                    </div>
-
-                    <div class="extra">
-                        <p>⏳ 4 Years</p>
-                        <p>🎓 100 Seats</p>
-                    </div>
-                </div>
-
-                <!-- EE -->
-                <div class="fee-card">
-                    <h2>EE</h2>
-
-                    <div class="fee-item">
-                        <i class="fa-solid fa-graduation-cap"></i>
-                        <span>Tuition Fee: ₹90,000</span>
-                    </div>
-
-                    <div class="fee-item">
-                        <i class="fa-solid fa-bed"></i>
-                        <span>Hostel Fee: ₹35,000</span>
-                    </div>
-
-                    <div class="fee-item total">
-                        <i class="fa-solid fa-wallet"></i>
-                        <span>Total: ₹1,25,000</span>
-                    </div>
-
-                    <div class="extra">
-                        <p>⏳ 4 Years</p>
-                        <p>🎓 90 Seats</p>
-                    </div>
-                </div>
-                <!-- CIVIL -->
-                <div class="fee-card">
-                    <h2>CIVIL</h2>
-
-                    <div class="fee-item">
-                        <i class="fa-solid fa-graduation-cap"></i>
-                        <span>Tuition Fee: ₹85,000</span>
-                    </div>
-
-                    <div class="fee-item">
-                        <i class="fa-solid fa-bed"></i>
-                        <span>Hostel Fee: ₹32,000</span>
-                    </div>
-
-                    <div class="fee-item total">
-                        <i class="fa-solid fa-wallet"></i>
-                        <span>Total: ₹1,17,000</span>
-                    </div>
-
-                    <div class="extra">
-                        <p>⏳ 4 Years</p>
-                        <p>🎓 80 Seats</p>
-                    </div>
-                </div>
-
-                <!-- MECHANICAL -->
-                <div class="fee-card">
-                    <h2>MECHANICAL</h2>
-
-                    <div class="fee-item">
-                        <i class="fa-solid fa-graduation-cap"></i>
-                        <span>Tuition Fee: ₹92,000</span>
-                    </div>
-
-                    <div class="fee-item">
-                        <i class="fa-solid fa-bed"></i>
-                        <span>Hostel Fee: ₹36,000</span>
-                    </div>
-
-                    <div class="fee-item total">
-                        <i class="fa-solid fa-wallet"></i>
-                        <span>Total: ₹1,28,000</span>
-                    </div>
-
-                    <div class="extra">
-                        <p>⏳ 4 Years</p>
-                        <p>🎓 100 Seats</p>
-                    </div>
-                </div>
-
-                <!-- IT -->
-                <div class="fee-card">
-                    <h2>IT</h2>
-
-                    <div class="fee-item">
-                        <i class="fa-solid fa-graduation-cap"></i>
-                        <span>Tuition Fee: ₹98,000</span>
-                    </div>
-
-                    <div class="fee-item">
-                        <i class="fa-solid fa-bed"></i>
-                        <span>Hostel Fee: ₹39,000</span>
-                    </div>
-
-                    <div class="fee-item total">
-                        <i class="fa-solid fa-wallet"></i>
-                        <span>Total: ₹1,37,000</span>
-                    </div>
-
-                    <div class="extra">
-                        <p>⏳ 4 Years</p>
-                        <p>🎓 110 Seats</p>
-                    </div>
-                </div>
-            </div>
-    </section>
-
-    <!-- NOTES -->
-    <section id="notes" class="page">
-        <div class="notes-section">
-
-            <h1 class="notes-title">📚 Notes Portal</h1>
-
-            <!-- Search Bar -->
-            <div class="search-box">
-                <input type="text" id="searchInput" placeholder="Search notes (CSE, ECE, topic...)">
-            </div>
-
-            <!-- Notes Grid -->
-            <div class="notes-container" id="notesContainer">
-
-                <!-- CSE -->
-                <div class="note-box" data-name="cse data structures">
-                    <img src="https://cdn-icons-png.flaticon.com/512/2721/2721293.png" class="dept-logo">
-                    <h3>CSE</h3>
-                    <p>Data Structures</p>
-                    <span>Dr. Sharma</span>
-                    <button>Download</button>
-                </div>
-
-                <!-- ECE -->
-                <div class="note-box" data-name="ece digital electronics">
-                    <img src="https://cdn-icons-png.flaticon.com/512/2103/2103633.png" class="dept-logo">
-                    <h3>ECE</h3>
-                    <p>Digital Electronics</p>
-                    <span>Prof. Rao</span>
-                    <button>Download</button>
-                </div>
-
-                <!-- EE -->
-                <div class="note-box" data-name="ee power systems">
-                    <img src="https://cdn-icons-png.flaticon.com/512/1048/1048949.png" class="dept-logo">
-                    <h3>EE</h3>
-                    <p>Power Systems</p>
-                    <span>Dr. Das</span>
-                    <button>Download</button>
-                </div>
-
-                <!-- CIVIL -->
-                <div class="note-box" data-name="civil structural engineering">
-                    <img src="https://cdn-icons-png.flaticon.com/512/3076/3076368.png" class="dept-logo">
-                    <h3>CIVIL</h3>
-                    <p>Structural Engg</p>
-                    <span>Prof. Mishra</span>
-                    <button>Download</button>
-                </div>
-                <!-- MECHANICAL -->
-                <div class="note-box" data-name="mechanical thermodynamics heat transfer">
-                    <img src="https://cdn-icons-png.flaticon.com/512/2942/2942789.png" class="dept-logo">
-                    <h3>MECH</h3>
-                    <p>Thermodynamics</p>
-                    <span>Prof. Singh</span>
-                    <button>Download</button>
-                </div>
-
-                <!-- IT -->
-                <div class="note-box" data-name="information technology database management dbms">
-                    <img src="https://cdn-icons-png.flaticon.com/512/4248/4248443.png" class="dept-logo">
-                    <h3>IT</h3>
-                    <p>Database Management</p>
-                    <span>Dr. Patel</span>
-                    <button>Download</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ALUMNI -->
-    <section id="alumni" class="page">
-        <div class="container">
-
-            <h1 class="title">Alumni Network</h1>
-            <p class="subtitle">Connect • Inspire • Grow</p>
-
-            <!-- Stats -->
-            <div class="stats">
-                <div class="stat-box">
-                    <h2>500+</h2>
-                    <p>Alumni</p>
-                </div>
-                <div class="stat-box">
-                    <h2>120+</h2>
-                    <p>Companies</p>
-                </div>
-                <div class="stat-box">
-                    <h2>50+</h2>
-                    <p>Mentors</p>
-                </div>
-            </div>
-
-            <!-- Search -->
-            <div class="search-box">
-                <input type="text" id="search" placeholder="Search by name or company..." onkeyup="searchAlumni()">
-            </div>
-
-            <!-- Alumni Cards -->
-            <div class="alumni-grid" id="grid">
-
-                <div class="card">
-                    <img src="https://i.pravatar.cc/100?img=1">
-                    <div class="name">Rahul Sharma</div>
-                    <div class="branch">CSE - 2020</div>
-                    <div class="company">Google</div>
-                    <div class="socials">
-                        <a href="#">🔗</a>
-                        <a href="#">💼</a>
-                        <a href="#">🐦</a>
-                    </div>
-                    <button class="btn"
-                        onclick="showDetails('Rahul Sharma','Software Engineer at Google')">View</button>
-                </div>
-
-                <div class="card">
-                    <img src="https://i.pravatar.cc/100?img=2">
-                    <div class="name">Priya Das</div>
-                    <div class="branch">ECE - 2019</div>
-                    <div class="company">Amazon</div>
-                    <div class="socials">
-                        <a href="#">🔗</a>
-                        <a href="#">💼</a>
-                        <a href="#">🐦</a>
-                    </div>
-                    <button class="btn" onclick="showDetails('Priya Das','Hardware Engineer at Amazon')">View</button>
-                </div>
-
-                <div class="card">
-                    <img src="https://i.pravatar.cc/100?img=3">
-                    <div class="name">Amit Kumar</div>
-                    <div class="branch">EE - 2018</div>
-                    <div class="company">Tesla</div>
-                    <div class="socials">
-                        <a href="#">🔗</a>
-                        <a href="#">💼</a>
-                        <a href="#">🐦</a>
-                    </div>
-                    <button class="btn" onclick="showDetails('Amit Kumar','Electrical Engineer at Tesla')">View</button>
-                </div>
-
-            </div>
-
-            <!-- Networking Section -->
-            <div class="network-section">
-                <h2 class="network-title">Alumni Networking Hubs</h2>
-
-                <div class="network-grid">
-
-                    <div class="network-card">
-                        <h3>Mentorship Program</h3>
-                        <p>Connect with seniors for career guidance</p>
-                        <button class="join-btn">Join</button>
-                    </div>
-
-                    <div class="network-card">
-                        <h3>Startup Network</h3>
-                        <p>Collaborate with alumni entrepreneurs</p>
-                        <button class="join-btn">Join</button>
-                    </div>
-
-                    <div class="network-card">
-                        <h3>Global Alumni</h3>
-                        <p>Find alumni working abroad</p>
-                        <button class="join-btn">Join</button>
-                    </div>
-
-                </div>
-            </div>
-
+        <div class="feature-box">
+            🎓
+            <p>AICTE Approved</p>
         </div>
 
-        <!-- Popup -->
-        <div class="popup" id="popup">
-            <div class="popup-content">
-                <h2 id="popupName"></h2>
-                <p id="popupInfo"></p>
-                <button class="close" onclick="closePopup()">Close</button>
-            </div>
-    </section>
-
-    <!-- COMPANIES -->
-    <section id="companies" class="page">
-        <div class="container">
-
-            <h1 class="title">Company Details</h1>
-            <p class="subtitle">Explore Recruiters • Packages • Hiring Insights</p>
-
-            <div class="stats">
-                <div class="stat-box">
-                    <h2>200+</h2>
-                    <p>Companies</p>
-                </div>
-                <div class="stat-box">
-                    <h2>96%</h2>
-                    <p>Placement Rate</p>
-                </div>
-                <div class="stat-box">
-                    <h2>₹45 LPA</h2>
-                    <p>Highest</p>
-                </div>
-            </div>
-
-            <div class="filter-bar">
-                <button class="filter-btn" onclick="filterCompanies('all')">All</button>
-                <button class="filter-btn" onclick="filterCompanies('tech')">Tech</button>
-                <button class="filter-btn" onclick="filterCompanies('core')">Core</button>
-                <button class="filter-btn" onclick="filterCompanies('startup')">Startup</button>
-            </div>
-
-            <div class="company-grid" id="companies">
-
-                <!-- EXISTING -->
-                <div class="company-card" data-type="tech">
-                    <div class="badge">Top</div>
-                    <img class="logo" src="https://cdn-icons-png.flaticon.com/512/300/300221.png">
-                    <div class="company-name">Google</div>
-                    <div class="info">Roles: <span class="highlight">SDE, AI</span></div>
-                    <div class="info">Package: <span class="highlight">₹25-40 LPA</span></div>
-                    <div class="progress">
-                        <div class="progress-bar" style="width:70%"></div>
-                    </div>
-                    <button class="explore-btn"
-                        onclick="openPopup('Google','Rounds: Coding + Interview')">Details</button>
-                </div>
-
-                <div class="company-card" data-type="tech">
-                    <div class="badge">Popular</div>
-                    <img class="logo" src="https://cdn-icons-png.flaticon.com/512/732/732229.png">
-                    <div class="company-name">Amazon</div>
-                    <div class="info">Roles: <span class="highlight">SDE, Cloud</span></div>
-                    <div class="info">Package: <span class="highlight">₹20-35 LPA</span></div>
-                    <div class="progress">
-                        <div class="progress-bar" style="width:65%"></div>
-                    </div>
-                    <button class="explore-btn"
-                        onclick="openPopup('Amazon','Rounds: Test + Interview')">Details</button>
-                </div>
-
-                <!-- NEW COMPANIES -->
-                <div class="company-card" data-type="tech">
-                    <div class="badge">Dream</div>
-                    <img class="logo" src="https://cdn-icons-png.flaticon.com/512/5968/5968292.png">
-                    <div class="company-name">Microsoft</div>
-                    <div class="info">Roles: <span class="highlight">SDE</span></div>
-                    <div class="info">Package: <span class="highlight">₹22-38 LPA</span></div>
-                    <div class="progress">
-                        <div class="progress-bar" style="width:68%"></div>
-                    </div>
-                    <button class="explore-btn"
-                        onclick="openPopup('Microsoft','Rounds: Coding + Tech Interview')">Details</button>
-                </div>
-
-                <div class="company-card" data-type="tech">
-                    <div class="badge">Top</div>
-                    <img class="logo" src="https://cdn-icons-png.flaticon.com/512/5968/5968705.png">
-                    <div class="company-name">Flipkart</div>
-                    <div class="info">Roles: <span class="highlight">SDE, Analyst</span></div>
-                    <div class="info">Package: <span class="highlight">₹12-20 LPA</span></div>
-                    <div class="progress">
-                        <div class="progress-bar" style="width:75%"></div>
-                    </div>
-                    <button class="explore-btn"
-                        onclick="openPopup('Flipkart','Rounds: Aptitude + Coding')">Details</button>
-                </div>
-
-                <div class="company-card" data-type="startup">
-                    <div class="badge">Startup</div>
-                    <img class="logo" src="https://cdn-icons-png.flaticon.com/512/888/888879.png">
-                    <div class="company-name">Zomato</div>
-                    <div class="info">Roles: <span class="highlight">Backend, Analyst</span></div>
-                    <div class="info">Package: <span class="highlight">₹10-18 LPA</span></div>
-                    <div class="progress">
-                        <div class="progress-bar" style="width:60%"></div>
-                    </div>
-                    <button class="explore-btn"
-                        onclick="openPopup('Zomato','Fast growing startup hiring')">Details</button>
-                </div>
-
-                <div class="company-card" data-type="startup">
-                    <div class="badge">Startup</div>
-                    <img class="logo" src="https://cdn-icons-png.flaticon.com/512/5968/5968853.png">
-                    <div class="company-name">Swiggy</div>
-                    <div class="info">Roles: <span class="highlight">SDE</span></div>
-                    <div class="info">Package: <span class="highlight">₹9-16 LPA</span></div>
-                    <div class="progress">
-                        <div class="progress-bar" style="width:58%"></div>
-                    </div>
-                    <button class="explore-btn" onclick="openPopup('Swiggy','Startup tech roles')">Details</button>
-                </div>
-
-                <div class="company-card" data-type="core">
-                    <div class="badge">Core</div>
-                    <img class="logo" src="https://cdn-icons-png.flaticon.com/512/5969/5969020.png">
-                    <div class="company-name">Tesla</div>
-                    <div class="info">Roles: <span class="highlight">Electrical</span></div>
-                    <div class="info">Package: <span class="highlight">₹30-50 LPA</span></div>
-                    <div class="progress">
-                        <div class="progress-bar" style="width:50%"></div>
-                    </div>
-                    <button class="explore-btn" onclick="openPopup('Tesla','Core engineering roles')">Details</button>
-                </div>
-
-                <div class="company-card" data-type="core">
-                    <div class="badge">Core</div>
-                    <img class="logo" src="https://cdn-icons-png.flaticon.com/512/5969/5969170.png">
-                    <div class="company-name">L&T</div>
-                    <div class="info">Roles: <span class="highlight">Civil, Mechanical</span></div>
-                    <div class="info">Package: <span class="highlight">₹6-12 LPA</span></div>
-                    <div class="progress">
-                        <div class="progress-bar" style="width:80%"></div>
-                    </div>
-                    <button class="explore-btn" onclick="openPopup('L&T','Mass core recruiter')">Details</button>
-                </div>
-
-            </div>
-
+        <div class="feature-box">
+            🏫
+            <p>BPUT Affiliated</p>
         </div>
 
-        <div class="popup" id="popup">
-            <div class="popup-content">
-                <h2 id="pname"></h2>
-                <p id="pinfo"></p>
-                <button class="close" onclick="closePopup()">Close</button>
-            </div>
-        </div>
-    </section>
-
-    <!--admission-->
-    <section id="admission" class="page">
-        <div class="container">
-
-            <h1 class="title">Admission Information</h1>
-            <p class="subtitle">Eligibility • Documents • Department Requirements</p>
-
-            <!-- ELIGIBILITY -->
-            <div class="section">
-                <h2>Eligibility Criteria</h2>
-                <div class="grid">
-
-                    <div class="card">
-                        <h3>CSE / ECE / EE / IT</h3>
-                        <p><span class="highlight">Qualification:</span> 10+2 with PCM</p>
-                        <p><span class="highlight">Minimum Marks:</span> 60%</p>
-                        <p><span class="highlight">Entrance:</span> JEE Main / State Exam</p>
-                    </div>
-
-                    <div class="card">
-                        <h3>Civil / Mechanical</h3>
-                        <p><span class="highlight">Qualification:</span> 10+2 with PCM</p>
-                        <p><span class="highlight">Minimum Marks:</span> 55%</p>
-                        <p><span class="highlight">Entrance:</span> JEE / State Exam</p>
-                    </div>
-
-                    <div class="card">
-                        <h3>M.Tech Programs</h3>
-                        <p><span class="highlight">Qualification:</span> B.Tech Degree</p>
-                        <p><span class="highlight">Minimum Marks:</span> 65%</p>
-                        <p><span class="highlight">Entrance:</span> GATE</p>
-                    </div>
-
-                </div>
-            </div>
-
-            <!-- DOCUMENTS -->
-            <div class="section">
-                <h2>Required Documents</h2>
-                <div class="grid">
-
-                    <div class="card">
-                        <h3>Basic Documents</h3>
-                        <ul>
-                            <li>10th Marksheet</li>
-                            <li>12th Marksheet</li>
-                            <li>Transfer Certificate</li>
-                            <li>Character Certificate</li>
-                        </ul>
-                    </div>
-
-                    <div class="card">
-                        <h3>Entrance Documents</h3>
-                        <ul>
-                            <li>JEE Admit Card</li>
-                            <li>JEE Rank Card</li>
-                            <li>Score Card</li>
-                        </ul>
-                    </div>
-
-                    <div class="card">
-                        <h3>Other Documents</h3>
-                        <ul>
-                            <li>Aadhar Card</li>
-                            <li>Passport Size Photos</li>
-                            <li>Caste Certificate (if applicable)</li>
-                            <li>Domicile Certificate</li>
-                        </ul>
-                    </div>
-
-                </div>
-            </div>
-
-            <!-- DEPARTMENT DETAILS -->
-            <div class="section">
-                <h2>Department-wise Requirements</h2>
-                <div class="grid">
-
-                    <div class="card">
-                        <h3>CSE</h3>
-                        <p>High demand branch with focus on programming and AI.</p>
-                        <p><span class="highlight">Preferred:</span> Strong math & logic skills</p>
-                    </div>
-
-                    <div class="card">
-                        <h3>ECE</h3>
-                        <p>Electronics + communication systems.</p>
-                        <p><span class="highlight">Preferred:</span> Interest in circuits & signals</p>
-                    </div>
-
-                    <div class="card">
-                        <h3>EE</h3>
-                        <p>Power systems and electrical machines.</p>
-                        <p><span class="highlight">Preferred:</span> Physics understanding</p>
-                    </div>
-
-                    <div class="card">
-                        <h3>Civil</h3>
-                        <p>Construction, design & infrastructure.</p>
-                        <p><span class="highlight">Preferred:</span> Field work interest</p>
-                    </div>
-
-                    <div class="card">
-                        <h3>Mechanical</h3>
-                        <p>Machines, manufacturing & thermal engineering.</p>
-                        <p><span class="highlight">Preferred:</span> Strong physics & problem-solving</p>
-                    </div>
-
-                    <div class="card">
-                        <h3>Information Technology (IT)</h3>
-                        <p>Software systems, networking & data handling.</p>
-                        <p><span class="highlight">Preferred:</span> Coding & analytical thinking</p>
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!--prediction-->
-    <section id="prediction" class="page">
-        <!-- CENTERED CONTENT -->
-        <div class="main">
-            <div class="predictor-box">
-
-                <h1>Smart Company Predictor</h1>
-                <p>Enter your details to predict your placement chances</p>
-
-                <input type="number" id="sgpa" placeholder="SGPA (0-10)" step="0.1">
-                <input type="number" id="cgpa" placeholder="CGPA (0-10)" step="0.1">
-
-                <select id="branch">
-                    <option value="">Select Branch</option>
-                    <option value="cse">CSE</option>
-                    <option value="ece">ECE</option>
-                    <option value="ee">EE</option>
-                    <option value="me">Mechanical</option>
-                    <option value="civil">Civil</option>
-                </select>
-
-                <select id="year">
-                    <option value="">Select Year</option>
-                    <option value="1">1st Year</option>
-                    <option value="2">2nd Year</option>
-                    <option value="3">3rd Year</option>
-                    <option value="4">Final Year</option>
-                </select>
-
-                <select id="skill">
-                    <option value="">Skill Level</option>
-                    <option value="low">Beginner</option>
-                    <option value="medium">Intermediate</option>
-                    <option value="high">Advanced</option>
-                </select>
-
-                <select id="internship">
-                    <option value="">Internship Experience</option>
-                    <option value="no">No Internship</option>
-                    <option value="yes">Completed Internship</option>
-                </select>
-
-                <button class="predict-btn" onclick="predictCompany()">Predict</button>
-
-                <div class="result" id="resultBox"></div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- 🔵 FLOATING CHATBOT -->
-    <div id="chatbot">
-
-        <!-- Floating Button -->
-        <div id="chatbot-btn" onclick="toggleChat()">
-            💬
+        <div class="feature-box">
+            💻
+            <p>Advanced Labs</p>
         </div>
 
-        <!-- Chat Box -->
-        <div id="chatbox">
-            <div class="chat-header">
-                <span>Chat Support</span>
-                <button onclick="toggleChat()">✖</button>
-            </div>
+        <div class="feature-box">
+            🌐
+            <p>Smart Classrooms</p>
+        </div>
 
-            <div class="chat-body" id="chatBody">
-                <div class="bot-msg">Hello 👋 How can I help you?</div>
-            </div>
+        <div class="feature-box">
+            🚀
+            <p>Innovation Hub</p>
+        </div>
 
-            <div class="chat-footer">
-                <input type="text" id="userInput" placeholder="Type a message...">
-                <button onclick="sendMessage()">➤</button>
+        <div class="feature-box">
+            📊
+            <p>Placement Support</p>
+        </div>
+
+    </div>
+
+</div>
+</section>
+
+<!--Gyallery-->
+  <section id="gallery" class="page">
+    <!-- OVERVIEW -->
+    <div class="gallery-hero">
+        <h1>College Gallery</h1>
+        <p>
+            Explore our campus life, cultural events, technical fests, sports activities,
+            and memorable moments of students at Roland Institute of Technology.
+        </p>
+    </div>
+<!-- IMAGE GRID -->
+    <div class="gallery-grid">
+
+        <div class="gallery-card">
+            <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1">
+            <p>Annual Tech Fest</p>
+        </div>
+
+        <div class="gallery-card">
+            <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644">
+            <p>Cultural Program</p>
+        </div>
+
+        <div class="gallery-card">
+            <img src="https://roland.ac.in/assets/images/gallery/10.png">
+            <p>Seminar Hall Session</p>
+        </div>
+
+        <div class="gallery-card">
+            <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7">
+            <p>Sports Day</p>
+        </div>
+
+        <div class="gallery-card">
+            <img src="ROLANDCAMPUSLIFE.png">
+            <p>Campus Life</p>
+        </div>
+
+        <div class="gallery-card">
+            <img src="https://roland.ac.in/assets/images/gallery/6.png">
+            <p>Award Distributiuon</p>
+        </div>
+    </div>
+</div>
+  </section>
+
+<!-- COURSES -->
+ <section id="courses" class="page">
+       <div class="course-container">
+    <h1 style="color:white;text-align:center;">Our Departments</h1>
+
+    <div class="course-grid">
+
+        <!-- CSE -->
+        <div class="course-box">
+            <img src="https://tse1.mm.bing.net/th/id/OIP.aVZYyNC8o1Gdkrh8CtE0ggHaEv?pid=Api&P=0&h=180">
+            <h3>CSE</h3>
+            <button onclick="toggle(this)">View All</button>
+            <div class="details">
+                Duration: 4 Years <br>
+                Seats: 120 <br>
+                Fees: ₹4,00,000 <br>
+                Qualification: B.Tech
+            </div>
+        </div>
+
+        <!-- EE -->
+        <div class="course-box">
+            <img src="https://tse4.mm.bing.net/th/id/OIP.a3fQqWNumfoB3pf_Dm6rRwHaD4?pid=Api&P=0&h=180">
+            <h3>EE</h3>
+            <button onclick="toggle(this)">View All</button>
+            <div class="details">
+                Duration: 4 Years <br>
+                Seats: 90 <br>
+                Fees: ₹3,50,000 <br>
+                Qualification: B.Tech
+            </div>
+        </div>
+
+        <!-- ECE -->
+        <div class="course-box">
+            <img src="https://tse3.mm.bing.net/th/id/OIP.SlW1WVs1pJ-RqwYEKzmiAQHaEH?pid=Api&P=0&h=180">
+            <h3>ECE</h3>
+            <button onclick="toggle(this)">View All</button>
+            <div class="details">
+                Duration: 4 Years <br>
+                Seats: 100 <br>
+                Fees: ₹3,80,000 <br>
+                Qualification: B.Tech
+            </div>
+        </div>
+
+        <!-- CIVIL -->
+        <div class="course-box">
+            <img src="https://tse4.mm.bing.net/th/id/OIP.INABuNLK84Z8FquF3J8vKQHaDi?pid=Api&P=0&h=180">
+            <h3>CIVIL</h3>
+            <button onclick="toggle(this)">View All</button>
+            <div class="details">
+                Duration: 4 Years <br>
+                Seats: 80 <br>
+                Fees: ₹3,00,000 <br>
+                Qualification: B.Tech
+            </div>
+        </div>
+
+        <!-- MECHANICAL -->
+        <div class="course-box">
+            <img src="https://tse3.mm.bing.net/th/id/OIP.GQkiUdCJqpBviHc8vMZm3wHaEK?pid=Api&P=0&h=180">
+            <h3>MECHANICAL</h3>
+            <button onclick="toggle(this)">View All</button>
+            <div class="details">
+                Duration: 4 Years <br>
+                Seats: 85 <br>
+                Fees: ₹3,20,000 <br>
+                Qualification: B.Tech
+            </div>
+        </div>
+
+        <!-- EEE -->
+        <div class="course-box">
+            <img src="https://tse4.mm.bing.net/th/id/OIP.TsVME62OAl9rVlcUIZYv-wHaEy?pid=Api&P=0&h=180">
+            <h3>EEE</h3>
+            <button onclick="toggle(this)">View All</button>
+            <div class="details">
+                Duration: 4 Years <br>
+                Seats: 70 <br>
+                Fees: ₹3,40,000 <br>
+                Qualification: B.Tech
             </div>
         </div>
 
     </div>
-    
-    <!-- FOOTER -->
-    <footer>
-        <footer class="footer">
+  </section>
 
-            <div class="footer-wrapper">
+<!--Faculty-->
+   <section id="faculty" class="page">
+   <div class="container">
 
-                <!-- BRAND BLOCK -->
-                <div class="footer-card brand">
-                    <div class="logo">🏫 College Portal</div>
-                    <p>
-                        A modern academic system for managing students, faculty,
-                        admissions, and institutional operations with efficiency.
-                    </p>
-                    <div class="tag">Smart • Secure • Scalable</div>
-                </div>
+<h1>Faculty Page</h1>
+<p class="subtitle">Meet Our Leadership & Department Heads</p>
 
-                <!-- CONTACT -->
-                <div class="footer-card">
-                    <h4>Contact</h4>
-                    <p>📧 college@example.com</p>
-                    <p>📞 +91 7735111222</p>
-                    <p>📍 Berhmpur</p>
+<!-- UPDATED TOP MANAGEMENT WITH DETAILS -->
+<div class="top-cards">
+    <div class="top-card">
+        <img src="https://via.placeholder.com/200">
+        <h4>Dr. S. Mohanty</h4>
+        <div class="hod-info">Principal</div>
+        <div class="hod-info">PhD (IIT Kharagpur)</div>
+        <div class="hod-info">20+ Years Experience</div>
+        <div class="hod-info">Specialization: Computer Networks</div>
+    </div>
+    <div class="top-card">
+        <img src="https://via.placeholder.com/200">
+        <h4>Prof. A. Mishra</h4>
+        <div class="hod-info">Vice Principal</div>
+        <div class="hod-info">M.Tech (NIT Rourkela)</div>
+        <div class="hod-info">15+ Years Experience</div>
+        <div class="hod-info">Specialization: VLSI Design</div>
+    </div>
+    <div class="top-card">
+        <img src="https://via.placeholder.com/200">
+        <h4>Mr. R. Patnaik</h4>
+        <div class="hod-info">Chairman</div>
+        <div class="hod-info">MBA (IIM Bangalore)</div>
+        <div class="hod-info">25+ Years Experience</div>
+        <div class="hod-info">Expert in Education Management</div>
+    </div>
+</div>
 
-                    <div class="chips">
-                        <span>Support</span>
-                        <span>Helpdesk</span>
-                        <span>Admin</span>
-                    </div>
-                </div>
+<!-- DEPARTMENTS WITH FULL HOD DETAILS -->
+<div class="departments">
 
-                <!-- NOTICES -->
-                <div class="footer-card">
-                    <h4>Updates</h4>
-                    <div class="list">
-                        <p>Admissions Open</p>
-                        <p>Placement Drive Active</p>
-                        <p>Semester Registration</p>
-                        <p>Scholarships Available</p>
-                    </div>
-                </div>
+<div class="dept-card">
+    <img src="https://via.placeholder.com/300">
+    <h4>CSE</h4>
+    <div class="hod-name">Dr. R. Kumar</div>
+    <div class="hod-info">PhD (IIT Delhi)</div>
+    <div class="hod-info">10+ Years Experience</div>
+    <div class="hod-info">AI & Machine Learning</div>
+    <button class="view-btn" onclick="openModal('cse')">View</button>
+</div>
 
-                <!-- INFO -->
-                <div class="footer-card">
-                    <h4>System Info</h4>
-                    <p>Version: 2.0</p>
-                    <p>Status: Active</p>
-                    <p>Uptime: 99.9%</p>
-                </div>
+<div class="dept-card">
+    <img src="https://via.placeholder.com/300">
+    <h4>ECE</h4>
+    <div class="hod-name">Prof. P. Mishra</div>
+    <div class="hod-info">PhD (IISc Bangalore)</div>
+    <div class="hod-info">8+ Years Experience</div>
+    <div class="hod-info">VLSI & Embedded Systems</div>
+    <button class="view-btn" onclick="openModal('ece')">View</button>
+</div>
 
+<div class="dept-card">
+    <img src="https://via.placeholder.com/300">
+    <h4>EE</h4>
+    <div class="hod-name">Dr. S. Nayak</div>
+    <div class="hod-info">PhD (NIT Rourkela)</div>
+    <div class="hod-info">9+ Years Experience</div>
+    <div class="hod-info">Power Systems</div>
+    <button class="view-btn" onclick="openModal('ee')">View</button>
+</div>
+
+<div class="dept-card">
+    <img src="https://via.placeholder.com/300">
+    <h4>ME</h4>
+    <div class="hod-name">Dr. A. Verma</div>
+    <div class="hod-info">PhD (IIT Kanpur)</div>
+    <div class="hod-info">7+ Years Experience</div>
+    <div class="hod-info">Thermodynamics</div>
+    <button class="view-btn" onclick="openModal('me')">View</button>
+</div>
+
+<div class="dept-card">
+    <img src="https://via.placeholder.com/300">
+    <h4>Civil</h4>
+    <div class="hod-name">Prof. R. Patel</div>
+    <div class="hod-info">M.Tech (IIT Bombay)</div>
+    <div class="hod-info">6+ Years Experience</div>
+    <div class="hod-info">Structural Engineering</div>
+    <button class="view-btn" onclick="openModal('civil')">View</button>
+</div>
+
+</div>
+
+</div>
+
+<div class="modal" id="modal">
+<div class="modal-content">
+<span class="close-btn" onclick="closeModal()">X</span>
+<h2 id="deptTitle"></h2>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Qualification</th>
+<th>Experience</th>
+<th>Subject</th>
+</tr>
+</thead>
+<tbody id="facultyTable"></tbody>
+</table>
+
+</div>
+</div>
+</section>
+
+<!-- FEES -->
+<section id="fees" class="page">
+  <!-- MAIN FEES CONTAINER -->
+<div class="fees-container">
+
+    <h1 class="fees-title">Fee Structure</h1>
+
+    <div class="fees-grid">
+
+        <!-- CSE -->
+        <div class="fee-card">
+            <h2>CSE</h2>
+
+            <div class="fee-item">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <span>Tuition Fee: ₹60,000</span>
             </div>
 
-            <div class="footer-bottom">
-                © 2026 College Portal • Built with Modern UI System
+            <div class="fee-item">
+                <i class="fa-solid fa-bed"></i>
+                <span>Hostel Fee: ₹40,000</span>
             </div>
 
-        </footer>
-    </footer>
+            <div class="fee-item total">
+                <i class="fa-solid fa-wallet"></i>
+                <span>Total: ₹1,00,000</span>
+            </div>
 
+            <div class="extra">
+                <p>⏳ 4 Years</p>
+                <p>🎓 120 Seats</p>
+            </div>
+        </div>
 
-     <!-- Attendance Button -->
-  <button class="att-btn" onclick="openForm()">Mark Attendance</button>
+        <!-- ECE -->
+        <div class="fee-card">
+            <h2>ECE</h2>
 
-  <!-- Popup Form -->
-  <div id="attendanceForm" class="form-popup">
+            <div class="fee-item">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <span>Tuition Fee: ₹45,000</span>
+            </div>
 
-    <h2>Teacher Attendance</h2>
+            <div class="fee-item">
+                <i class="fa-solid fa-bed"></i>
+                <span>Hostel Fee: ₹40,000</span>
+            </div>
 
-    <input type="text" id="teacherName" placeholder="Enter Teacher Name" required>
+            <div class="fee-item total">
+                <i class="fa-solid fa-wallet"></i>
+                <span>Total: ₹85,000</span>
+            </div>
 
+            <div class="extra">
+                <p>⏳ 4 Years</p>
+                <p>🎓 100 Seats</p>
+            </div>
+        </div>
+
+        <!-- EE -->
+        <div class="fee-card">
+            <h2>EE</h2>
+
+            <div class="fee-item">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <span>Tuition Fee: ₹45,000</span>
+            </div>
+
+            <div class="fee-item">
+                <i class="fa-solid fa-bed"></i>
+                <span>Hostel Fee: ₹40,000</span>
+            </div>
+
+            <div class="fee-item total">
+                <i class="fa-solid fa-wallet"></i>
+                <span>Total: ₹85,000</span>
+            </div>
+
+            <div class="extra">
+                <p>⏳ 4 Years</p>
+                <p>🎓 90 Seats</p>
+            </div>
+        </div>
+        <!-- CIVIL -->
+<div class="fee-card">
+    <h2>CIVIL</h2>
+
+    <div class="fee-item">
+        <i class="fa-solid fa-graduation-cap"></i>
+        <span>Tuition Fee: ₹50,000</span>
+    </div>
+
+    <div class="fee-item">
+        <i class="fa-solid fa-bed"></i>
+        <span>Hostel Fee: ₹40,000</span>
+    </div>
+
+    <div class="fee-item total">
+        <i class="fa-solid fa-wallet"></i>
+        <span>Total: ₹90,000</span>
+    </div>
+
+    <div class="extra">
+        <p>⏳ 4 Years</p>
+        <p>🎓 80 Seats</p>
+    </div>
+</div>
+
+<!-- MECHANICAL -->
+<div class="fee-card">
+    <h2>MECHANICAL</h2>
+
+    <div class="fee-item">
+        <i class="fa-solid fa-graduation-cap"></i>
+        <span>Tuition Fee: ₹92,000</span>
+    </div>
+
+    <div class="fee-item">
+        <i class="fa-solid fa-bed"></i>
+        <span>Hostel Fee: ₹36,000</span>
+    </div>
+
+    <div class="fee-item total">
+        <i class="fa-solid fa-wallet"></i>
+        <span>Total: ₹1,28,000</span>
+    </div>
+
+    <div class="extra">
+        <p>⏳ 4 Years</p>
+        <p>🎓 100 Seats</p>
+    </div>
+</div>
+
+<!-- IT -->
+<div class="fee-card">
+    <h2>IT</h2>
+
+    <div class="fee-item">
+        <i class="fa-solid fa-graduation-cap"></i>
+        <span>Tuition Fee: ₹98,000</span>
+    </div>
+
+    <div class="fee-item">
+        <i class="fa-solid fa-bed"></i>
+        <span>Hostel Fee: ₹39,000</span>
+    </div>
+
+    <div class="fee-item total">
+        <i class="fa-solid fa-wallet"></i>
+        <span>Total: ₹1,37,000</span>
+    </div>
+
+    <div class="extra">
+        <p>⏳ 4 Years</p>
+        <p>🎓 110 Seats</p>
+    </div>
+</div>
+    </div>
+</section>
+
+<!-- NOTES -->
+<section id="notes" class="page">
+  <div class="notes-section">
+
+    <h1 class="notes-title">📚 Notes Portal</h1>
+
+    <!-- Search Bar -->
+    <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search notes (CSE, ECE, topic...)">
+    </div>
+
+    <!-- Notes Grid -->
+    <div class="notes-container" id="notesContainer">
+
+        <!-- CSE -->
+        <div class="note-box" data-name="cse data structures">
+            <img src="https://cdn-icons-png.flaticon.com/512/2721/2721293.png" class="dept-logo">
+            <h3>CSE</h3>
+            <p>Data Structures</p>
+            <span>Dr. Sharma</span>
+            <button>Download</button>
+        </div>
+
+        <!-- ECE -->
+        <div class="note-box" data-name="ece digital electronics">
+            <img src="https://cdn-icons-png.flaticon.com/512/2103/2103633.png" class="dept-logo">
+            <h3>ECE</h3>
+            <p>Digital Electronics</p>
+            <span>Prof. Rao</span>
+            <button>Download</button>
+        </div>
+
+        <!-- EE -->
+        <div class="note-box" data-name="ee power systems">
+            <img src="https://cdn-icons-png.flaticon.com/512/1048/1048949.png" class="dept-logo">
+            <h3>EE</h3>
+            <p>Power Systems</p>
+            <span>Dr. Das</span>
+            <button>Download</button>
+        </div>
+
+        <!-- CIVIL -->
+        <div class="note-box" data-name="civil structural engineering">
+            <img src="https://cdn-icons-png.flaticon.com/512/3076/3076368.png" class="dept-logo">
+            <h3>CIVIL</h3>
+            <p>Structural Engg</p>
+            <span>Prof. Mishra</span>
+            <button>Download</button>
+        </div>
+        <!-- MECHANICAL -->
+   <div class="note-box" data-name="mechanical thermodynamics heat transfer">
+    <img src="https://cdn-icons-png.flaticon.com/512/2942/2942789.png" class="dept-logo">
+    <h3>MECH</h3>
+    <p>Thermodynamics</p>
+    <span>Prof. Singh</span>
+    <button>Download</button>
+</div>
+
+<!-- IT -->
+<div class="note-box" data-name="information technology database management dbms">
+    <img src="https://cdn-icons-png.flaticon.com/512/4248/4248443.png" class="dept-logo">
+    <h3>IT</h3>
+    <p>Database Management</p>
+    <span>Dr. Patel</span>
+    <button>Download</button>
+</div>
+    </div>
+</div>
+</section>
+
+<!-- ALUMNI -->
+<section id="alumni" class="page">
+  <div class="container">
+
+<h1 class="title">Alumni Network</h1>
+<p class="subtitle">Connect • Inspire • Grow</p>
+
+<!-- Stats -->
+<div class="stats">
+    <div class="stat-box"><h2>500+</h2><p>Alumni</p></div>
+    <div class="stat-box"><h2>120+</h2><p>Companies</p></div>
+    <div class="stat-box"><h2>50+</h2><p>Mentors</p></div>
+</div>
+
+<!-- Search -->
+<div class="search-box">
+    <input type="text" id="search" placeholder="Search by name or company..." onkeyup="searchAlumni()">
+</div>
+
+<!-- Alumni Cards -->
+<div class="alumni-grid" id="grid">
+
+<div class="card">
+<img src="https://i.pravatar.cc/100?img=1">
+<div class="name">Rahul Sharma</div>
+<div class="branch">CSE - 2020</div>
+<div class="company">Google</div>
+<div class="socials">
+<a href="#">🔗</a>
+<a href="#">💼</a>
+<a href="#">🐦</a>
+</div>
+<button class="btn" onclick="showDetails('Rahul Sharma','Software Engineer at Google')">View</button>
+</div>
+
+<div class="card">
+<img src="https://i.pravatar.cc/100?img=2">
+<div class="name">Priya Das</div>
+<div class="branch">ECE - 2019</div>
+<div class="company">Amazon</div>
+<div class="socials">
+<a href="#">🔗</a>
+<a href="#">💼</a>
+<a href="#">🐦</a>
+</div>
+<button class="btn" onclick="showDetails('Priya Das','Hardware Engineer at Amazon')">View</button>
+</div>
+
+<div class="card">
+<img src="https://i.pravatar.cc/100?img=3">
+<div class="name">Amit Kumar</div>
+<div class="branch">EE - 2018</div>
+<div class="company">Tesla</div>
+<div class="socials">
+<a href="#">🔗</a>
+<a href="#">💼</a>
+<a href="#">🐦</a>
+</div>
+<button class="btn" onclick="showDetails('Amit Kumar','Electrical Engineer at Tesla')">View</button>
+</div>
+
+</div>
+
+<!-- Networking Section -->
+<div class="network-section">
+<h2 class="network-title">Alumni Networking Hubs</h2>
+
+<div class="network-grid">
+
+<div class="network-card">
+<h3>Mentorship Program</h3>
+<p>Connect with seniors for career guidance</p>
+<button class="join-btn">Join</button>
+</div>
+
+<div class="network-card">
+<h3>Startup Network</h3>
+<p>Collaborate with alumni entrepreneurs</p>
+<button class="join-btn">Join</button>
+</div>
+
+<div class="network-card">
+<h3>Global Alumni</h3>
+<p>Find alumni working abroad</p>
+<button class="join-btn">Join</button>
+</div>
+
+</div>
+</div>
+
+</div>
+
+<!-- Popup -->
+<div class="popup" id="popup">
+<div class="popup-content">
+<h2 id="popupName"></h2>
+<p id="popupInfo"></p>
+<button class="close" onclick="closePopup()">Close</button>
+</div>
+</section>
+
+<!-- COMPANIES -->
+<section id="companies" class="page">
+<div class="container">
+
+<h1 class="title">Company Details</h1>
+<p class="subtitle">Explore Recruiters • Packages • Hiring Insights</p>
+
+<div class="stats">
+<div class="stat-box"><h2>200+</h2><p>Companies</p></div>
+<div class="stat-box"><h2>96%</h2><p>Placement Rate</p></div>
+<div class="stat-box"><h2>₹45 LPA</h2><p>Highest</p></div>
+</div>
+
+<div class="filter-bar">
+<button class="filter-btn" onclick="filterCompanies('all')">All</button>
+<button class="filter-btn" onclick="filterCompanies('tech')">Tech</button>
+<button class="filter-btn" onclick="filterCompanies('core')">Core</button>
+<button class="filter-btn" onclick="filterCompanies('startup')">Startup</button>
+</div>
+
+<div class="company-grid" id="companies">
+
+<!-- EXISTING -->
+<div class="company-card" data-type="tech">
+<div class="badge">Top</div>
+<img class="logo" src="https://cdn-icons-png.flaticon.com/512/300/300221.png">
+<div class="company-name">Google</div>
+<div class="info">Roles: <span class="highlight">SDE, AI</span></div>
+<div class="info">Package: <span class="highlight">₹25-40 LPA</span></div>
+<div class="progress"><div class="progress-bar" style="width:70%"></div></div>
+<button class="explore-btn" onclick="openPopup('Google','Rounds: Coding + Interview')">Details</button>
+</div>
+
+<div class="company-card" data-type="tech">
+<div class="badge">Popular</div>
+<img class="logo" src="https://cdn-icons-png.flaticon.com/512/732/732229.png">
+<div class="company-name">Amazon</div>
+<div class="info">Roles: <span class="highlight">SDE, Cloud</span></div>
+<div class="info">Package: <span class="highlight">₹20-35 LPA</span></div>
+<div class="progress"><div class="progress-bar" style="width:65%"></div></div>
+<button class="explore-btn" onclick="openPopup('Amazon','Rounds: Test + Interview')">Details</button>
+</div>
+
+<!-- NEW COMPANIES -->
+<div class="company-card" data-type="tech">
+<div class="badge">Dream</div>
+<img class="logo" src="https://cdn-icons-png.flaticon.com/512/5968/5968292.png">
+<div class="company-name">Microsoft</div>
+<div class="info">Roles: <span class="highlight">SDE</span></div>
+<div class="info">Package: <span class="highlight">₹22-38 LPA</span></div>
+<div class="progress"><div class="progress-bar" style="width:68%"></div></div>
+<button class="explore-btn" onclick="openPopup('Microsoft','Rounds: Coding + Tech Interview')">Details</button>
+</div>
+
+<div class="company-card" data-type="tech">
+<div class="badge">Top</div>
+<img class="logo" src="https://cdn-icons-png.flaticon.com/512/5968/5968705.png">
+<div class="company-name">Flipkart</div>
+<div class="info">Roles: <span class="highlight">SDE, Analyst</span></div>
+<div class="info">Package: <span class="highlight">₹12-20 LPA</span></div>
+<div class="progress"><div class="progress-bar" style="width:75%"></div></div>
+<button class="explore-btn" onclick="openPopup('Flipkart','Rounds: Aptitude + Coding')">Details</button>
+</div>
+
+<div class="company-card" data-type="startup">
+<div class="badge">Startup</div>
+<img class="logo" src="https://cdn-icons-png.flaticon.com/512/888/888879.png">
+<div class="company-name">Zomato</div>
+<div class="info">Roles: <span class="highlight">Backend, Analyst</span></div>
+<div class="info">Package: <span class="highlight">₹10-18 LPA</span></div>
+<div class="progress"><div class="progress-bar" style="width:60%"></div></div>
+<button class="explore-btn" onclick="openPopup('Zomato','Fast growing startup hiring')">Details</button>
+</div>
+
+<div class="company-card" data-type="startup">
+<div class="badge">Startup</div>
+<img class="logo" src="https://cdn-icons-png.flaticon.com/512/5968/5968853.png">
+<div class="company-name">Swiggy</div>
+<div class="info">Roles: <span class="highlight">SDE</span></div>
+<div class="info">Package: <span class="highlight">₹9-16 LPA</span></div>
+<div class="progress"><div class="progress-bar" style="width:58%"></div></div>
+<button class="explore-btn" onclick="openPopup('Swiggy','Startup tech roles')">Details</button>
+</div>
+
+<div class="company-card" data-type="core">
+<div class="badge">Core</div>
+<img class="logo" src="https://cdn-icons-png.flaticon.com/512/5969/5969020.png">
+<div class="company-name">Tesla</div>
+<div class="info">Roles: <span class="highlight">Electrical</span></div>
+<div class="info">Package: <span class="highlight">₹30-50 LPA</span></div>
+<div class="progress"><div class="progress-bar" style="width:50%"></div></div>
+<button class="explore-btn" onclick="openPopup('Tesla','Core engineering roles')">Details</button>
+</div>
+
+<div class="company-card" data-type="core">
+<div class="badge">Core</div>
+<img class="logo" src="https://cdn-icons-png.flaticon.com/512/5969/5969170.png">
+<div class="company-name">L&T</div>
+<div class="info">Roles: <span class="highlight">Civil, Mechanical</span></div>
+<div class="info">Package: <span class="highlight">₹6-12 LPA</span></div>
+<div class="progress"><div class="progress-bar" style="width:80%"></div></div>
+<button class="explore-btn" onclick="openPopup('L&T','Mass core recruiter')">Details</button>
+</div>
+
+</div>
+
+</div>
+
+<div class="popup" id="popup">
+<div class="popup-content">
+<h2 id="pname"></h2>
+<p id="pinfo"></p>
+<button class="close" onclick="closePopup()">Close</button>
+</div>
+</div>
+</section>
+
+<!--admission-->
+<section id="admission" class="page">
+    <div class="container">
+
+<h1 class="title">Admission Information</h1>
+<p class="subtitle">Eligibility • Documents • Department Requirements</p>
+
+<!-- ELIGIBILITY -->
+<div class="section">
+<h2>Eligibility Criteria</h2>
+<div class="grid">
+
+<div class="card">
+<h3>CSE / ECE / EE / IT</h3>
+<p><span class="highlight">Qualification:</span> 10+2 with PCM</p>
+<p><span class="highlight">Minimum Marks:</span> 60%</p>
+<p><span class="highlight">Entrance:</span> JEE Main / State Exam</p>
+</div>
+
+<div class="card">
+<h3>Civil / Mechanical</h3>
+<p><span class="highlight">Qualification:</span> 10+2 with PCM</p>
+<p><span class="highlight">Minimum Marks:</span> 55%</p>
+<p><span class="highlight">Entrance:</span> JEE / State Exam</p>
+</div>
+
+<div class="card">
+<h3>M.Tech Programs</h3>
+<p><span class="highlight">Qualification:</span> B.Tech Degree</p>
+<p><span class="highlight">Minimum Marks:</span> 65%</p>
+<p><span class="highlight">Entrance:</span> GATE</p>
+</div>
+
+</div>
+</div>
+
+<!-- DOCUMENTS -->
+<div class="section">
+<h2>Required Documents</h2>
+<div class="grid">
+
+<div class="card">
+<h3>Basic Documents</h3>
+<ul>
+<li>10th Marksheet</li>
+<li>12th Marksheet</li>
+<li>Transfer Certificate</li>
+<li>Character Certificate</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Entrance Documents</h3>
+<ul>
+<li>JEE Admit Card</li>
+<li>JEE Rank Card</li>
+<li>Score Card</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Other Documents</h3>
+<ul>
+<li>Aadhar Card</li>
+<li>Passport Size Photos</li>
+<li>Caste Certificate (if applicable)</li>
+<li>Domicile Certificate</li>
+</ul>
+</div>
+
+</div>
+</div>
+
+<!-- DEPARTMENT DETAILS -->
+<div class="section">
+<h2>Department-wise Requirements</h2>
+<div class="grid">
+
+<div class="card">
+<h3>CSE</h3>
+<p>High demand branch with focus on programming and AI.</p>
+<p><span class="highlight">Preferred:</span> Strong math & logic skills</p>
+</div>
+
+<div class="card">
+<h3>ECE</h3>
+<p>Electronics + communication systems.</p>
+<p><span class="highlight">Preferred:</span> Interest in circuits & signals</p>
+</div>
+
+<div class="card">
+<h3>EE</h3>
+<p>Power systems and electrical machines.</p>
+<p><span class="highlight">Preferred:</span> Physics understanding</p>
+</div>
+
+<div class="card">
+<h3>Civil</h3>
+<p>Construction, design & infrastructure.</p>
+<p><span class="highlight">Preferred:</span> Field work interest</p>
+</div>
+
+<div class="card">
+<h3>Mechanical</h3>
+<p>Machines, manufacturing & thermal engineering.</p>
+<p><span class="highlight">Preferred:</span> Strong physics & problem-solving</p>
+</div>
+
+<div class="card">
+<h3>Information Technology (IT)</h3>
+<p>Software systems, networking & data handling.</p>
+<p><span class="highlight">Preferred:</span> Coding & analytical thinking</p>
+</div>
+
+</div>
+</div>
+
+</div>
+</section>
+
+<!--prediction--> 
+<section id="prediction" class="page">
+<!-- CENTERED CONTENT -->
+<div class="main">
+<div class="predictor-box">
+
+<h1>Smart Company Predictor</h1>
+<p>Enter your details to predict your placement chances</p>
+
+<input type="number" id="sgpa" placeholder="SGPA (0-10)" step="0.1">
+<input type="number" id="cgpa" placeholder="CGPA (0-10)" step="0.1">
+
+<select id="branch">
+<option value="">Select Branch</option>
+<option value="cse">CSE</option>
+<option value="ece">ECE</option>
+<option value="ee">EE</option>
+<option value="me">Mechanical</option>
+<option value="civil">Civil</option>
+</select>
+
+<select id="year">
+<option value="">Select Year</option>
+<option value="1">1st Year</option>
+<option value="2">2nd Year</option>
+<option value="3">3rd Year</option>
+<option value="4">Final Year</option>
+</select>
+
+<select id="skill">
+<option value="">Skill Level</option>
+<option value="low">Beginner</option>
+<option value="medium">Intermediate</option>
+<option value="high">Advanced</option>
+</select>
+
+<select id="internship">
+<option value="">Internship Experience</option>
+<option value="no">No Internship</option>
+<option value="yes">Completed Internship</option>
+</select>
+
+<button class="predict-btn" onclick="predictCompany()">Predict</button>
+
+<div class="result" id="resultBox"></div>
+
+</div>
+</div>
+</section>
+
+<!-- 🔵 FLOATING CHATBOT -->
+<div id="chatbot">
+
+    <!-- Floating Button -->
+    <div id="chatbot-btn" onclick="toggleChat()">
+        💬
+    </div>
+
+    <!-- Chat Box -->
+    <div id="chatbox">
+        <div class="chat-header">
+            <span>Chat Support</span>
+            <button onclick="toggleChat()">✖</button>
+        </div>
+
+        <div class="chat-body" id="chatBody">
+            <div class="bot-msg">Hello 👋 How can I help you?</div>
+        </div>
+
+        <div class="chat-footer">
+            <input type="text" id="userInput" placeholder="Type a message...">
+            <button onclick="sendMessage()">➤</button>
+        </div>
+    </div>
+
+</div>
+
+<!--attendance-->
+<div id="attendance" class="page">
+        <div class="attendance-container">
+        <h1>📅 Smart Attendance System</h1>
+
+<div class="card">
+
+    <input type="text" id="name" placeholder="Enter Name">
     <input type="date" id="date">
 
-    <select id="status">
-      <option value="Present">Present</option>
-      <option value="Absent">Absent</option>
-      <option value="Leave">Leave</option>
-    </select>
+    <br>
 
-    <!-- ✅ FIXED BUTTON -->
-    <button type="button" class="submit-btn" onclick="submitAttendance()">Submit</button>
+    <button class="present" onclick="markAttendance('Present')">Present</button>
+    <button class="absent" onclick="markAttendance('Absent')">Absent</button>
+    <button class="clear" onclick="clearAll()">Clear All</button>
 
-    <button type="button" class="close-btn" onclick="closeForm()">Close</button>
+    <div class="search-box">
+        🔍 <input type="text" id="search" placeholder="Search by name..." onkeyup="searchData()">
+    </div>
 
-  </div>
+    <h3>Total Records: <span id="count">0</span></h3>
 
-    <script>
-        function showPage(pageId) {
-            let pages = document.querySelectorAll('.page');
-            pages.forEach(p => p.classList.remove('active'));
-            document.getElementById(pageId).classList.add('active');
-        }
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="table"></tbody>
+    </table>
 
-        function upload() {
-            let file = document.getElementById('file').files[0];
-            if (file) {
-                let li = document.createElement('li');
-                li.textContent = file.name;
-                document.getElementById('list').appendChild(li);
-            }
-        }
-        function toggle(btn) {
-            let details = btn.nextElementSibling;
+</div>
 
-            if (details.style.display === "block") {
-                details.style.display = "none";
-                btn.innerText = "View All";
-            } else {
-                details.style.display = "block";
-                btn.innerText = "Hide";
-            }
-        }
-        /* MAIN FUNCTION - called when clicking View All:faculty */
-        function goHome() { window.location.href = "index.html"; }
+    </div>
+</div>
 
-        function openModal(dept) {
-            document.getElementById("modal").style.display = "flex";
+<!-- FOOTER -->
+<footer>
+  <footer class="footer">
 
-            let data = {
-                cse: [
-                    ["Sunil Kumar Sahu", "PhD", "10+ Years", "Mathematics"],
-                    ["Gunamani Jena", "PhD", "10+ Years", "Mathematics"],
-                    ["Raghunath Kar", "PhD", "10+ Years", "Mathematics"],
-                    ["Rina Rath", "PhD", "10+ Years", "Mathematics"],
-                    ["Manik Chand Patnaik", "PhD", "10+ Years", "Mathematics"],
-                    ["Simanchal Das", "PhD", "10+ Years", "Mathematics"],
-                    ["Parveen Kumar Patra", "PhD", "10+ Years", "Mathematics"],
-                    ["Sabita Bisoyi", "PhD", "10+ Years", "Mathematics"],
-                    ["Arakhit Bhol", "PhD", "10+ Years", "Mathematics"],
-                    ["Gitanjali Sahu", "PhD", "10+ Years", "Mathematics"],
-                    ["Prabhu Prasad Patnaik", "PhD", "10+ Years", "Mathematics"],
-                    ["Ekta Saraf", "PhD", "10+ Years", "Mathematics"],
-                    ["Rabindra Nayaka", "PhD", "10+ Years", "Mathematics"],
-                    ["Mandapakala Sangeeta", "PhD", "10+ Years", "Mathematics"],
-                    ["Deepak Kumar Jena", "PhD", "10+ Years", "Mathematics"],
-                    ["Epari Madhusmita Patra", "PhD", "10+ Years", "Mathematics"],
-                    ["Rosaleen Rath", "PhD", "10+ Years", "Mathematics"],
-                    ["Sumit Kumar Sabat", "PhD", "10+ Years", "Mathematics"],
-                    ["Biswajeet Panda", "PhD", "10+ Years", "Mathematics"],
-                    ["Pritam Panda", "PhD", "10+ Years", "Mathematics"],
-                    ["Rama Chandra Padhy", "PhD", "10+ Years", "Mathematics"],
-                    ["Sanjay Kumar Rauta", "PhD", "10+ Years", "Mathematics"],
-                    ["Rasmi Roy Badakumar", "PhD", "10+ Years", "Mathematics"],
-                    ["Suresh Sabhapati", "PhD", "10+ Years", "Mathematics"],
-                    ["Sradhanajali Sahu", "PhD", "10+ Years", "Mathematics"],
-                    ["Kabita Naik", "PhD", "10+ Years", "Mathematics"],
-                    ["Manisha Sahu", "PhD", "10+ Years", "Mathematics"],
-                    ["Radha Rani Samantara", "PhD", "10+ Years", "Mathematics"],
-                    ["Subhashree Mishra", "PhD", "10+ Years", "Mathematics"],
-                    ["Santosh Venkata Gouri Malla", "PhD", "10+ Years", "Mathematics"],
-                    ["Deeparani Panda", "PhD", "10+ Years", "Mathematics"],
-                    ["Arati Kumari Sabat", "PhD", "10+ Years", "Mathematics"],
-                    ["Kondeti Maheswar Rao", "PhD", "10+ Years", "Mathematics"],
-                    ["Samita Kumari Panda", "PhD", "10+ Years", "Mathematics"],
-                    ["Bhagaban Muduli", "PhD", "10+ Years", "Mathematics"],
-                    ["Laxmi Maharana", "PhD", "10+ Years", "Mathematics"],
-                    ["Saroj Kumar Gomango", "PhD", "10+ Years", "Mathematics"],
-                    ["B Chandrababu Naidu", "PhD", "10+ Years", "Mathematics"],
-                    ["Dinesh Dash", "PhD", "10+ Years", "Mathematics"],
-                    ["Santoshi Rani Nahak", "PhD", "10+ Years", "Mathematics"],
-                    ["Manoranjana Panda", "PhD", "10+ Years", "Mathematics"]],
-                ece: [["P. Mishra", "PhD", "8 yrs", "VLSI"]],
-                ee: [["S. Nayak", "PhD", "9 yrs", "Power"]],
-                me: [["Rakesh Ranjan Polai", "PhD", "10+ Years", "Mathematics"],
-            ["Rajesh Das", "PhD", "10+ Years", "Mathematics"],
-            ["Sarat Chandra Chaine", "PhD", "10+ Years", "Mathematics"],
-            ["Jayadeep Sahu", "PhD", "10+ Years", "Mathematics"],
-            ["Jagannath Padhy", "PhD", "10+ Years", "Mathematics"],
-            ["Kshetra Mohan Sahu", "PhD", "10+ Years", "Mathematics"],
-            ["Rasmi Ranjan Dash", "PhD", "10+ Years", "Mathematics"],
-            ["Kola Ameet Kumar", "PhD", "10+ Years", "Mathematics"],
-            ["Khetrabasi Behera", "PhD", "10+ Years", "Mathematics"],
-            ["Aruna Kumar Swain", "PhD", "10+ Years", "Mathematics"],
-            ["Kanchada Payal Senapaty", "PhD", "10+ Years", "Mathematics"],
-            ["Podal Bikash Kumar", "PhD", "10+ Years", "Mathematics"],
-            ["Sowmya Ranjan Padhy", "PhD", "10+ Years", "Mathematics"],
-            ["Pritam Swarup Pradhan", "PhD", "10+ Years", "Mathematics"],
-            ["Subhasis Panda", "PhD", "10+ Years", "Mathematics"],
-            ["Roshni Padhi", "PhD", "10+ Years", "Mathematics"],
-            ["Prabhanjan Panigrahi", "PhD", "10+ Years", "Mathematics"]]
-            };
+    <div class="footer-wrapper">
 
-            let tbody = document.getElementById("facultyTable");
-            tbody.innerHTML = "";
+        <!-- BRAND BLOCK -->
+        <div class="footer-card brand">
+            <div class="logo">🏫 College Portal</div>
+            <p>
+                A modern academic system for managing students, faculty,
+                admissions, and institutional operations with efficiency.
+            </p>
+            <div class="tag">Smart • Secure • Scalable</div>
+        </div>
 
-            data[dept].forEach(f => {
-                tbody.innerHTML += `<tr><td>${f[0]}</td><td>${f[1]}</td><td>${f[2]}</td><td>${f[3]}</td></tr>`;
-            });
+        <!-- CONTACT -->
+        <div class="footer-card">
+            <h4>Contact</h4>
+            <p>📧 college@example.com</p>
+            <p>📞 +91 7735111222</p>
+            <p>📍 Berhmpur</p>
 
-            document.getElementById("deptTitle").innerText = dept.toUpperCase() + " Department Faculty";
-        }
+            <div class="chips">
+                <span>Support</span>
+                <span>Helpdesk</span>
+                <span>Admin</span>
+            </div>
+        </div>
 
-        function closeModal() {
-            document.getElementById("modal").style.display = "none";
-        }
+        <!-- NOTICES -->
+        <div class="footer-card">
+            <h4>Updates</h4>
+            <div class="list">
+                <p>Admissions Open</p>
+                <p>Placement Drive Active</p>
+                <p>Semester Registration</p>
+                <p>Scholarships Available</p>
+            </div>
+        </div>
 
-        /* TABLE CREATOR FUNCTION */
-        function createTable(rows) {
+        <!-- INFO -->
+        <div class="footer-card">
+            <h4>System Info</h4>
+            <p>Version: 2.0</p>
+            <p>Status: Active</p>
+            <p>Uptime: 99.9%</p>
+        </div>
 
-            let table = `
+    </div>
+
+    <div class="footer-bottom">
+        © 2026 College Portal • Built with Modern UI System
+    </div>
+
+</footer>
+</footer>
+
+<script>
+function showPage(pageId){
+  let pages = document.querySelectorAll('.page');
+  pages.forEach(p => p.classList.remove('active'));
+  document.getElementById(pageId).classList.add('active');
+}
+
+function upload(){
+  let file = document.getElementById('file').files[0];
+  if(file){
+    let li = document.createElement('li');
+    li.textContent = file.name;
+    document.getElementById('list').appendChild(li);
+  }
+}
+function toggle(btn) {
+    let details = btn.nextElementSibling;
+
+    if (details.style.display === "block") {
+        details.style.display = "none";
+        btn.innerText = "View All";
+    } else {
+        details.style.display = "block";
+        btn.innerText = "Hide";
+    }
+}
+/* MAIN FUNCTION - called when clicking View All:faculty */
+function goHome(){window.location.href="index.html";}
+
+function openModal(dept){
+    document.getElementById("modal").style.display="flex";
+
+    let data = {
+        cse:[["Dr. R. Kumar","PhD","10 yrs","DSA"]],
+        ece:[["P. Mishra","PhD","8 yrs","VLSI"]],
+        ee:[["S. Nayak","PhD","9 yrs","Power"]]
+    };
+
+    let tbody = document.getElementById("facultyTable");
+    tbody.innerHTML = "";
+
+    data[dept].forEach(f=>{
+        tbody.innerHTML += `<tr><td>${f[0]}</td><td>${f[1]}</td><td>${f[2]}</td><td>${f[3]}</td></tr>`;
+    });
+
+    document.getElementById("deptTitle").innerText = dept.toUpperCase()+" Department Faculty";
+}
+
+function closeModal(){
+    document.getElementById("modal").style.display="none";
+}
+
+/* TABLE CREATOR FUNCTION */
+function createTable(rows) {
+
+    let table = `
         <table border="1" width="100%" cellpadding="10" 
         style="border-collapse: collapse; background:white; color:black; margin-top:10px;">
         
@@ -3172,8 +3006,8 @@
         </tr>
     `;
 
-            rows.forEach(row => {
-                table += `
+    rows.forEach(row => {
+        table += `
             <tr>
                 <td>${row[0]}</td>
                 <td>${row[1]}</td>
@@ -3181,191 +3015,235 @@
                 <td>${row[3]}</td>
             </tr>
         `;
-            });
+    });
 
-            table += `</table>`;
-            return table;
+    table += `</table>`;
+    return table;
+}
+
+
+/* CLOSE BUTTON FUNCTION */
+function closeBox() {
+    document.getElementById("detailsBox").style.display = "none";
+}
+/* notes*/
+const searchInput = document.getElementById("searchInput");
+const notes = document.querySelectorAll(".note-box");
+
+searchInput.addEventListener("keyup", function() {
+    let value = this.value.toLowerCase();
+
+    notes.forEach(note => {
+        let name = note.getAttribute("data-name");
+
+        if (name.includes(value)) {
+            note.style.display = "block";
+        } else {
+            note.style.display = "none";
         }
+    });
+});
+/*alumin*/
+function showDetails(name, info){
+    document.getElementById('popup').style.display='flex';
+    document.getElementById('popupName').innerText=name;
+    document.getElementById('popupInfo').innerText=info;
+}
 
+function closePopup(){
+    document.getElementById('popup').style.display='none';
+}
 
-        /* CLOSE BUTTON FUNCTION */
-        function closeBox() {
-            document.getElementById("detailsBox").style.display = "none";
+function searchAlumni(){
+    let input=document.getElementById('search').value.toLowerCase();
+    let cards=document.getElementsByClassName('card');
+
+    for(let i=0;i<cards.length;i++){
+        let text=cards[i].innerText.toLowerCase();
+        cards[i].style.display=text.includes(input)?'block':'none';
+    }
+}
+/*companes*/
+function openPopup(name, info){
+    document.getElementById('popup').style.display='flex';
+    document.getElementById('pname').innerText=name;
+    document.getElementById('pinfo').innerText=info;
+}
+
+function closePopup(){
+    document.getElementById('popup').style.display='none';
+}
+
+function filterCompanies(type){
+    let cards=document.querySelectorAll('.company-card');
+    cards.forEach(card=>{
+        if(type==='all' || card.dataset.type===type){
+            card.style.display='block';
+        }else{
+            card.style.display='none';
         }
-        /* notes*/
-        const searchInput = document.getElementById("searchInput");
-        const notes = document.querySelectorAll(".note-box");
+    });
+}
+/*prediction*/
+function goHome(){
+    window.location.href = "index.html"; // change if your homepage name is different
+}
 
-        searchInput.addEventListener("keyup", function () {
-            let value = this.value.toLowerCase();
+function predictCompany(){
+    let sgpa = parseFloat(document.getElementById("sgpa").value);
+    let cgpa = parseFloat(document.getElementById("cgpa").value);
+    let branch = document.getElementById("branch").value;
+    let year = document.getElementById("year").value;
+    let skill = document.getElementById("skill").value;
+    let internship = document.getElementById("internship").value;
+    let result = document.getElementById("resultBox");
 
-            notes.forEach(note => {
-                let name = note.getAttribute("data-name");
+    if(isNaN(sgpa) || isNaN(cgpa) || branch=="" || year=="" || skill=="" || internship==""){
+        result.style.display = "block";
+        result.innerHTML = "⚠️ Please fill all fields correctly!";
+        return;
+    }
 
-                if (name.includes(value)) {
-                    note.style.display = "block";
-                } else {
-                    note.style.display = "none";
-                }
-            });
-        });
-        /*alumin*/
-        function showDetails(name, info) {
-            document.getElementById('popup').style.display = 'flex';
-            document.getElementById('popupName').innerText = name;
-            document.getElementById('popupInfo').innerText = info;
-        }
+    let avg = (sgpa + cgpa) / 2;
+    let message = "";
+    let chance = 0;
 
-        function closePopup() {
-            document.getElementById('popup').style.display = 'none';
-        }
+    if(branch === "cse" && skill === "high" && avg >= 8.5){
+        message = "🔥 Strong chance in <span class='highlight'>Google, Microsoft, Amazon</span>";
+        chance = 90;
+    }
+    else if(branch === "cse" && avg >= 8){
+        message = "💎 Chances in <span class='highlight'>Infosys, TCS Digital, Wipro</span>";
+        chance = 75;
+    }
+    else if(branch === "ece" || branch === "ee"){
+        message = "⚡ Core + IT roles in <span class='highlight'>TCS, Capgemini, L&T</span>";
+        chance = 70;
+    }
+    else if(branch === "me" || branch === "civil"){
+        message = "🏗️ Core companies like <span class='highlight'>L&T, Tata Projects</span>";
+        chance = 65;
+    }
+    else{
+        message = "👍 Mass recruiters like <span class='highlight'>TCS, Cognizant</span>";
+        chance = 60;
+    }
 
-        function searchAlumni() {
-            let input = document.getElementById('search').value.toLowerCase();
-            let cards = document.getElementsByClassName('card');
+    if(internship === "yes"){
+        chance += 10;
+        message += "<br><br>🚀 Internship boosts your chances!";
+    }
 
-            for (let i = 0; i < cards.length; i++) {
-                let text = cards[i].innerText.toLowerCase();
-                cards[i].style.display = text.includes(input) ? 'block' : 'none';
-            }
-        }
-        /*companes*/
-        function openPopup(name, info) {
-            document.getElementById('popup').style.display = 'flex';
-            document.getElementById('pname').innerText = name;
-            document.getElementById('pinfo').innerText = info;
-        }
+    if(year < 3){
+        message += "<br><br>📚 You are early in your journey. Focus on skills!";
+    }
 
-        function closePopup() {
-            document.getElementById('popup').style.display = 'none';
-        }
-
-        function filterCompanies(type) {
-            let cards = document.querySelectorAll('.company-card');
-            cards.forEach(card => {
-                if (type === 'all' || card.dataset.type === type) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
-        /*prediction*/
-        function goHome() {
-            window.location.href = "index.html"; // change if your homepage name is different
-        }
-
-        function predictCompany() {
-            let sgpa = parseFloat(document.getElementById("sgpa").value);
-            let cgpa = parseFloat(document.getElementById("cgpa").value);
-            let branch = document.getElementById("branch").value;
-            let year = document.getElementById("year").value;
-            let skill = document.getElementById("skill").value;
-            let internship = document.getElementById("internship").value;
-            let result = document.getElementById("resultBox");
-
-            if (isNaN(sgpa) || isNaN(cgpa) || branch == "" || year == "" || skill == "" || internship == "") {
-                result.style.display = "block";
-                result.innerHTML = "⚠️ Please fill all fields correctly!";
-                return;
-            }
-
-            let avg = (sgpa + cgpa) / 2;
-            let message = "";
-            let chance = 0;
-
-            if (branch === "cse" && skill === "high" && avg >= 8.5) {
-                message = "🔥 Strong chance in <span class='highlight'>Google, Microsoft, Amazon</span>";
-                chance = 90;
-            }
-            else if (branch === "cse" && avg >= 8) {
-                message = "💎 Chances in <span class='highlight'>Infosys, TCS Digital, Wipro</span>";
-                chance = 75;
-            }
-            else if (branch === "ece" || branch === "ee") {
-                message = "⚡ Core + IT roles in <span class='highlight'>TCS, Capgemini, L&T</span>";
-                chance = 70;
-            }
-            else if (branch === "me" || branch === "civil") {
-                message = "🏗️ Core companies like <span class='highlight'>L&T, Tata Projects</span>";
-                chance = 65;
-            }
-            else {
-                message = "👍 Mass recruiters like <span class='highlight'>TCS, Cognizant</span>";
-                chance = 60;
-            }
-
-            if (internship === "yes") {
-                chance += 10;
-                message += "<br><br>🚀 Internship boosts your chances!";
-            }
-
-            if (year < 3) {
-                message += "<br><br>📚 You are early in your journey. Focus on skills!";
-            }
-
-            result.style.display = "block";
-            result.innerHTML = message + `
+    result.style.display = "block";
+    result.innerHTML = message + `
         <div class="progress">
             <div class="progress-bar" style="width:${chance}%"></div>
         </div>
         <p><span class="highlight">${chance}% Placement Probability</span></p>
     `;
-        }
-   
-        /* ATTENDENCE */
-        function openForm(){
-  document.getElementById("attendanceForm").style.display = "block";
-  document.getElementById("date").valueAsDate = new Date();
+}
+/*chat bot*/
+function toggleChat() {
+    let chatbox = document.getElementById("chatbox");
+    chatbox.style.display = (chatbox.style.display === "flex") ? "none" : "flex";
 }
 
-function closeForm(){
-  document.getElementById("attendanceForm").style.display = "none";
+function sendMessage() {
+    let input = document.getElementById("userInput");
+    let message = input.value.trim();
+    if(message === "") return;
+
+    let chatBody = document.getElementById("chatBody");
+
+    // User message
+    let userMsg = document.createElement("div");
+    userMsg.className = "user-msg";
+    userMsg.innerText = message;
+    chatBody.appendChild(userMsg);
+
+    // Bot reply (simple demo)
+    let botMsg = document.createElement("div");
+    botMsg.className = "bot-msg";
+    botMsg.innerText = "Thanks! We will get back to you.";
+    
+    setTimeout(() => {
+        chatBody.appendChild(botMsg);
+        chatBody.scrollTop = chatBody.scrollHeight;
+    }, 500);
+
+    input.value = "";
+}
+/*attendance*/
+let attendance = JSON.parse(localStorage.getItem("attendance")) || [];
+
+// SAVE
+function save() {
+    localStorage.setItem("attendance", JSON.stringify(attendance));
 }
 
-async function submitAttendance(){
+// MARK ATTENDANCE
+function markAttendance(status) {
+    let name = document.getElementById("name").value;
+    let date = document.getElementById("date").value;
 
-  const teacherName = document.getElementById("teacherName").value;
-  const date = document.getElementById("date").value;
-  const status = document.getElementById("status").value;
+    if (!name || !date) {
+        alert("Enter name and date");
+        return;
+    }
 
-  if(!teacherName){
-    alert("Please enter teacher name");
-    return;
-  }
+    attendance.push({name, date, status});
+    save();
+    displayData();
+}
 
-  try {
-    const res = await fetch("http://localhost:5000/api/attendance/add", {
-      method:"POST",
-      headers:{
-        "Content-Type":"application/json"
-      },
-      body: JSON.stringify({
-        teacherName,
-        date,
-        status
-      })
+// DISPLAY
+function displayData(data = attendance) {
+    let table = document.getElementById("table");
+    table.innerHTML = "";
+
+    data.forEach((a, i) => {
+        table.innerHTML += `
+        <tr>
+            <td>${a.name}</td>
+            <td>${a.date}</td>
+            <td>${a.status}</td>
+            <td><button onclick="deleteRecord(${i})">Delete</button></td>
+        </tr>`;
     });
 
-    const data = await res.json();
-
-    alert(data.message);
-
-    // ✅ Clear form
-    document.getElementById("teacherName").value = "";
-    document.getElementById("date").value = "";
-
-    // ✅ Close popup
-    closeForm();
-
-  } catch(error){
-    console.log(error);
-    alert(" ATTENDENCE ADDED ");
-  }
+    document.getElementById("count").innerText = data.length;
 }
 
-    </script>
+// DELETE
+function deleteRecord(index) {
+    attendance.splice(index, 1);
+    save();
+    displayData();
+}
+
+// SEARCH
+function searchData() {
+    let value = document.getElementById("search").value.toLowerCase();
+    let filtered = attendance.filter(a => a.name.toLowerCase().includes(value));
+    displayData(filtered);
+}
+
+// CLEAR ALL
+function clearAll() {
+    if(confirm("Delete all records?")) {
+        attendance = [];
+        save();
+        displayData();
+    }
+}
+
+// INIT
+displayData();
+</script>
 
 </body>
-
 </html>
