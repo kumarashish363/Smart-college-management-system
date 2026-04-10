@@ -54,6 +54,26 @@
             z-index: 1000;
         }
 
+        nav {
+            display: flex;
+            gap: 11px;
+            list-style: none;
+            margin: 10px;
+        }
+
+        #small {
+            position: absolute;
+            top: 0;
+            left: 16px;
+        }
+
+        #smal {
+            position: absolute;
+            left: 77px;
+            top: 12px;
+        }
+
+
         .logo-box {
             display: flex;
             align-items: left;
@@ -61,13 +81,17 @@
         }
 
         .logo-box img {
-            width: 50px;
-            height: 50px;
+            width: 70px;
+            height: 70px;
         }
 
         .logo-text small {
             display: block;
-            font-size: 12px;
+            font-size: 15px;
+        }
+
+        .logo-text b {
+            font-size: 25px;
         }
 
         .navbar ul {
@@ -83,6 +107,8 @@
             color: white;
             text-decoration: none;
             cursor: pointer;
+            font-size: 17px;
+            top: 10px;
         }
 
         /* HOME */
@@ -95,10 +121,12 @@
         }
 
         .overlay {
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(239, 235, 235, 0.6);
+            font-size: 20px;
             padding: 40px;
             color: white;
             text-align: center;
+            justify-content: center;
         }
 
         /* PAGES */
@@ -1552,15 +1580,19 @@
 
         /*login*/
         /* 📦 Login Container */
+
         #Student\ Login .login-container {
             width: 360px;
             padding: 30px;
+            margin-left: 20%;
+            margin-top: 50px;
             border-radius: 20px;
             backdrop-filter: blur(15px);
             background: rgba(255, 255, 255, 0.08);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.2);
             text-align: center;
+            justify-content: center;
         }
 
         /* 📝 Title */
@@ -1618,6 +1650,15 @@
             transition: 0.3s;
         }
 
+        #loginpic {
+            text-align: right;
+            position: fixed;
+            
+            right: 0;
+            left: 150%;
+
+        }
+
         #Student\ Login .login-btn:hover {
             transform: scale(1.05);
             box-shadow: 0 0 15px rgba(0, 114, 255, 0.6);
@@ -1655,6 +1696,8 @@
             max-width: 500px;
             padding: 25px;
             border-radius: 15px;
+            margin-left: 32%;
+            margin-right: 0%;
             background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(15px);
             box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
@@ -1922,8 +1965,8 @@
     <!-- NAVBAR -->
     <div class="navbar">
         <div class="logo-box">
-            <img src="https://www.roland.ac.in/assets/images/logo.png">
-            <div class="logo-text">
+            <img id="small" src="https://www.roland.ac.in/assets/images/logo.png">
+            <div id="smal" class="logo-text">
                 <small>Welcome to!</small>
                 <b>ROLAND INSTITUTE OF TECHNOLOGY</b>
             </div>
@@ -1959,6 +2002,10 @@
     <!-- login PAGE -->
     <div id="Student Login" class="page">
         <div class="login-container">
+            <!-- Right IMAGE -->
+            <div class="about-image">
+                <img id="loginpic" src="LOGINIMAGE.jpeg">
+            </div>
             <h2>Student Login</h2>
 
             <form>
@@ -2182,7 +2229,7 @@
         <div class="gallery-grid">
 
             <div class="gallery-card">
-                <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1">
+                <img src="LIBRARY3.jpg">
                 <p>Annual Tech Fest</p>
             </div>
 
@@ -2197,8 +2244,8 @@
             </div>
 
             <div class="gallery-card">
-                <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7">
-                <p>Sports Day</p>
+                <img src="blob:https://web.whatsapp.com/51b1fea0-be4b-4636-8353-7d8ca89f2d7e">
+                <p>Library</p>
             </div>
 
             <div class="gallery-card">
@@ -2591,7 +2638,8 @@
 
                 <!-- CSE -->
                 <div class="note-box" data-name="cse data structures">
-                    <img src="https://tse1.mm.bing.net/th/id/OIP.aVZYyNC8o1Gdkrh8CtE0ggHaEv?pid=Api&P=0&h=180" class="dept-logo">
+                    <img src="https://tse1.mm.bing.net/th/id/OIP.aVZYyNC8o1Gdkrh8CtE0ggHaEv?pid=Api&P=0&h=180"
+                        class="dept-logo">
                     <h3>CSE</h3>
                     <p>Compiler Design</p>
                     <span>Dr. Sunil kumar Sahu</span>
@@ -2614,7 +2662,8 @@
 
                 <!-- ECE -->
                 <div class="note-box" data-name="ece digital electronics">
-                    <img src="https://tse3.mm.bing.net/th/id/OIP.SlW1WVs1pJ-RqwYEKzmiAQHaEH?pid=Api&P=0&h=180" class="dept-logo">
+                    <img src="https://tse3.mm.bing.net/th/id/OIP.SlW1WVs1pJ-RqwYEKzmiAQHaEH?pid=Api&P=0&h=180"
+                        class="dept-logo">
                     <h3>ECE</h3>
                     <p>Digital Electronics</p>
                     <span>Prof. Rao</span>
@@ -2623,7 +2672,8 @@
 
                 <!-- EE -->
                 <div class="note-box" data-name="ee power systems">
-                    <img src="https://tse4.mm.bing.net/th/id/OIP.a3fQqWNumfoB3pf_Dm6rRwHaD4?pid=Api&P=0&h=180" class="dept-logo">
+                    <img src="https://tse4.mm.bing.net/th/id/OIP.a3fQqWNumfoB3pf_Dm6rRwHaD4?pid=Api&P=0&h=180"
+                        class="dept-logo">
                     <h3>EE</h3>
                     <p>Power Systems</p>
                     <span>Dr. Das</span>
@@ -2632,7 +2682,8 @@
 
                 <!-- CIVIL -->
                 <div class="note-box" data-name="civil structural engineering">
-                    <img src="https://tse4.mm.bing.net/th/id/OIP.INABuNLK84Z8FquF3J8vKQHaDi?pid=Api&P=0&h=180" class="dept-logo">
+                    <img src="https://tse4.mm.bing.net/th/id/OIP.INABuNLK84Z8FquF3J8vKQHaDi?pid=Api&P=0&h=180"
+                        class="dept-logo">
                     <h3>CIVIL</h3>
                     <p>Structural Engg</p>
                     <span>Prof. Mishra</span>
@@ -2640,7 +2691,8 @@
                 </div>
                 <!-- MECHANICAL -->
                 <div class="note-box" data-name="mechanical thermodynamics heat transfer">
-                    <img src="https://tse3.mm.bing.net/th/id/OIP.GQkiUdCJqpBviHc8vMZm3wHaEK?pid=Api&P=0&h=180" class="dept-logo">
+                    <img src="https://tse3.mm.bing.net/th/id/OIP.GQkiUdCJqpBviHc8vMZm3wHaEK?pid=Api&P=0&h=180"
+                        class="dept-logo">
                     <h3>MECH</h3>
                     <p>Thermodynamics</p>
                     <span>Prof. Singh</span>
@@ -2649,7 +2701,8 @@
 
                 <!-- EEE -->
                 <div class="note-box" data-name="information technology database management dbms">
-                    <img src="https://tse3.mm.bing.net/th/id/OIP.GQkiUdCJqpBviHc8vMZm3wHaEK?pid=Api&P=0&h=180" class="dept-logo">
+                    <img src="https://tse3.mm.bing.net/th/id/OIP.GQkiUdCJqpBviHc8vMZm3wHaEK?pid=Api&P=0&h=180"
+                        class="dept-logo">
                     <h3>EEE</h3>
                     <p>Database Management</p>
                     <span>Dr. Patel</span>
@@ -3245,8 +3298,8 @@
             document.getElementById("modal").style.display = "flex";
 
             let data = {
-             
-          cse :[["Dr. SUNIL KUMAR SAHU", "B.Tech (CSE)", "15 yrs", "PROFESSOR & HOD"],
+
+                cse: [["Dr. SUNIL KUMAR SAHU", "B.Tech (CSE)", "15 yrs", "PROFESSOR & HOD"],
                 ["Dr. GUNAMANI JENA", "B.Tech (CSE)", "15 yrs", "PROFESSOR"],
                 ["Dr. RAGHUNATH KAR", "B.Tech (CSE)", "15 yrs", "PROFESSOR"],
                 ["Dr. RINA RATH", "B.Tech (CSE)", "15 yrs", "PROFESSOR"],
@@ -3287,20 +3340,20 @@
                 ["Mr. DINESH DASH", "B.Tech (CSE)", "15 yrs", "ASST PROFESSOR"],
                 ["Ms. SANTOSHI RANI NAHAK", "B.Tech (CSE)", "15 yrs", "ASST PROFESSOR"],
                 ["Mr. MANORANJANA PANDA", "B.Tech (CSE)", "15 yrs", "LECTURER"]
-            ],
+                ],
                 ece: [["P. Mishra", "PhD", "8 yrs", "VLSI"]],
-                    ee: [["S. Nayak", "PhD", "9 yrs", "Power"]]
-        };
+                ee: [["S. Nayak", "PhD", "9 yrs", "Power"]]
+            };
 
-        let tbody = document.getElementById("facultyTable");
-        tbody.innerHTML = "";
+            let tbody = document.getElementById("facultyTable");
+            tbody.innerHTML = "";
 
-        data[dept].forEach(f => {
-            tbody.innerHTML += `<tr><td>${f[0]}</td><td>${f[1]}</td><td>${f[2]}</td><td>${f[3]}</td></tr>`;
-        });
+            data[dept].forEach(f => {
+                tbody.innerHTML += `<tr><td>${f[0]}</td><td>${f[1]}</td><td>${f[2]}</td><td>${f[3]}</td></tr>`;
+            });
 
-        document.getElementById("deptTitle").innerText = dept.toUpperCase() + " Department Faculty";
-}
+            document.getElementById("deptTitle").innerText = dept.toUpperCase() + " Department Faculty";
+        }
 
         function closeModal() {
             document.getElementById("modal").style.display = "none";
